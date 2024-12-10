@@ -17,4 +17,11 @@ public class RecipeStorage {
     public void addRecipe(Recipe recipe){
         recipeList.add(recipe);
     }
+    public void editRecipe(Recipe recipe,String recipeText){
+        RecipeBuilder recipeBuilder = new RecipeBuilder();
+        recipeBuilder.editRecipe(recipe,recipeText);
+    }
+    public void removeRecipe(Recipe recipe){
+        recipeList.remove(recipe);
+    }
 }

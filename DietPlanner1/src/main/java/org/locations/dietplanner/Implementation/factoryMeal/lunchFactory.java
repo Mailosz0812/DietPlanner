@@ -7,10 +7,10 @@ import org.locations.dietplanner.Interfaces.IMeal;
 import java.util.List;
 
 public class lunchFactory extends MealFactory{
-    @Override
     public IMeal createMeal(List<Double> calories, List<Double> fats, List<Double> carbs, List<Double> proteins
-            , String name) {
-        //lunch lunch = new lunch(recipe);
-        //return lunch;
+            , List<String> names,List<String> types,String recipeText,String dateOfMeal,String mealType) {
+        Recipe recipe = super.prepareMeal(calories, fats, carbs, proteins, names, types, recipeText,mealType);
+        return new lunch(recipe,dateOfMeal);
+
     }
 }

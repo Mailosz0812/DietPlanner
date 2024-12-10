@@ -1,30 +1,56 @@
 package org.locations.dietplanner.Implementation.Builder;
 
+import org.locations.dietplanner.Implementation.MealType;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Recipe {
-    private List<Ingredient> ingredientList = new ArrayList<>();
+    private List<Ingredient> ingredientList;
     private String recipeText;
-    Recipe(List<Ingredient> ingredientList,String recipeText){
+    private MealType mealType;
+    Recipe(List<Ingredient> ingredientList,String recipeText,MealType mealType){
         this.recipeText = recipeText;
         this.ingredientList = ingredientList;
+        this.mealType = mealType;
+    }
+    public List<Ingredient> getIngredientList(){
+        return this.ingredientList;
     }
 
     public Double calculateCalories(){
-        return null;
+        Double calories = 0.0;
+        for (Ingredient ingredient : ingredientList) {
+            calories+=ingredient.getCalories();
+        }
+        return calories;
     }
 
     public Double calculateFat(){
-        return null;
+        Double fat = 0.0;
+        for (Ingredient ingredient : ingredientList) {
+            fat+=ingredient.getFat();
+        }
+        return fat;
     }
 
     public Double calculateProtein(){
-        return null;
+        Double protein = 0.0;
+        for (Ingredient ingredient : ingredientList) {
+            protein+=ingredient.getProtein();
+        }
+        return protein;
     }
 
     public Double calculateCarb(){
-        return null;
+        Double carb = 0.0;
+        for (Ingredient ingredient : ingredientList) {
+            carb+=ingredient.getCarb();
+        }
+        return carb;
+    }
+    public void setRecipeText(String recipeText) {
+        this.recipeText = recipeText;
     }
 
 }
