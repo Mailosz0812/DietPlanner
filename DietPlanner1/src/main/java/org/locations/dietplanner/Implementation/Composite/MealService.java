@@ -2,7 +2,6 @@ package org.locations.dietplanner.Implementation.Composite;
 
 import org.locations.dietplanner.Implementation.Builder.Ingredient;
 import org.locations.dietplanner.Implementation.IngredientType;
-import org.locations.dietplanner.Interfaces.IMeal;
 import org.locations.dietplanner.Interfaces.IMealsGroup;
 
 import java.util.ArrayList;
@@ -60,10 +59,10 @@ public class MealService implements IMealsGroup{
     }
 
     @Override
-    public HashMap<IngredientType, List<Ingredient>> groupeIngredients() {
+    public HashMap<IngredientType, List<Ingredient>> groupIngredients() {
         HashMap<IngredientType,List<Ingredient>> groupedIngredients = new HashMap<>();
         for (IMealsGroup iMealsGroup : MealsGroup) {
-            HashMap<IngredientType,List<Ingredient>> currentIngredientGroup = iMealsGroup.groupeIngredients();
+            HashMap<IngredientType,List<Ingredient>> currentIngredientGroup = iMealsGroup.groupIngredients();
             for (Map.Entry<IngredientType, List<Ingredient>> listEntry : currentIngredientGroup.entrySet()) {
                 groupedIngredients
                         .computeIfAbsent(listEntry.getKey(),k -> new ArrayList<>())

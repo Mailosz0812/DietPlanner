@@ -11,5 +11,5 @@ public interface IMealsGroup {
     Double calculateFat();
     Double calculateCarb();
     Double calculateProtein();
-    HashMap<IngredientType, List<Ingredient>> groupeIngredients();
+    HashMap<IngredientType, List<Ingredient>> groupIngredients();
 }

@@ -20,7 +20,7 @@ public class dinner implements IMeal, IMealsGroup {
         this.day = LocalDate.parse(date);
     }
     @Override
-    public HashMap<IngredientType, List<Ingredient>> groupeIngredients() {
+    public HashMap<IngredientType, List<Ingredient>> groupIngredients() {
         HashMap<IngredientType,List<Ingredient>> ingredientsSet = new HashMap<>();
         List<Ingredient> ingredientList = recipe.getIngredientList();
         for (Ingredient ingredient : ingredientList) {
