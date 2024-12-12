@@ -9,7 +9,7 @@ public enum MealType {
         try {
             return MealType.valueOf(type.toUpperCase());
         }catch(IllegalArgumentException e){
-            System.out.println("Uncorrect meal type");
+            System.out.println("Incorrect meal type");
             return null;
         }
     }

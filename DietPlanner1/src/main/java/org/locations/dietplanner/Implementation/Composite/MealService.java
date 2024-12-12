@@ -14,6 +14,7 @@ public class MealService implements IMealsGroup{
 
     public MealService(){
         this.MealsGroup = new ArrayList<>();
+
     }
     public void addMealGroup(IMealsGroup mealsGroup){
         MealsGroup.add(mealsGroup);
