@@ -2,14 +2,16 @@ package org.locations.dietplanner.Implementation.Composite;
 
 import org.locations.dietplanner.Implementation.Builder.Ingredient;
 import org.locations.dietplanner.Implementation.IngredientType;
+import org.locations.dietplanner.Interfaces.IMeal;
 import org.locations.dietplanner.Interfaces.IMealsGroup;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MealService implements IMealsGroup{
+public class MealService implements IMealsGroup, Serializable {
     private List<IMealsGroup> MealsGroup;
 
     public MealService(){

@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public interface IMeal {
     Recipe getRecipe();
     void setRecipe(Recipe recipe);
-    String toStringwithDay();
+    String toStringWithDay();
     void setDay(String date);
     LocalDate getDay();
 }

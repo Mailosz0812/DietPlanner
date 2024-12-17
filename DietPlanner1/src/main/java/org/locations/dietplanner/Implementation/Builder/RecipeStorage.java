@@ -1,9 +1,11 @@
 package org.locations.dietplanner.Implementation.Builder;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
-public class RecipeStorage {
+public class RecipeStorage implements Serializable {
     private static RecipeStorage service;
     private List<Recipe> recipeList = new ArrayList<>();
 
@@ -13,6 +15,14 @@ public class RecipeStorage {
             service = new RecipeStorage();
         }
         return service;
+    }
+    public Recipe getRecipe(String name){
+        for (Recipe recipe : recipeList) {
+            if(recipe.getName().equals(name)){
+                return recipe;
+            }
+        }
+        throw new NoSuchElementException("No such recipe in storage");
     }
     public void addRecipe(Recipe recipe){
         recipeList.add(recipe);

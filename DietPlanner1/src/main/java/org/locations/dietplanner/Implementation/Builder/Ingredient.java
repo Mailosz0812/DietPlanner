@@ -2,9 +2,9 @@ package org.locations.dietplanner.Implementation.Builder;
 
 import org.locations.dietplanner.Implementation.IngredientType;
 
-import java.util.HashMap;
+import java.io.Serializable;
 
-public class Ingredient {
+public class Ingredient implements Serializable {
     private Double calories;
     private Double fat;
     private Double carb;
@@ -39,5 +39,8 @@ public class Ingredient {
 
     public IngredientType getType() {
         return type;
+    }
+    public String getName(){
+        return this.name;
     }
 }

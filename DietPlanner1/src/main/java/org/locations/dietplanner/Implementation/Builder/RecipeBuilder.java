@@ -11,12 +11,17 @@ public class RecipeBuilder {
     private List<Ingredient> ingredientList = new ArrayList<>();
     private String recipeText;
     private MealType mealType;
+    private String name;
 
     public RecipeBuilder(){
         this.id = nextId++;
     }
     public RecipeBuilder addIngredient(Ingredient ingredient){
         this.ingredientList.add(ingredient);
+        return this;
+    }
+    public RecipeBuilder addIngredients(List<Ingredient> ingredients){
+        this.ingredientList.addAll(ingredients);
         return this;
     }
     public RecipeBuilder addRecipeText(String recipeText){
@@ -31,8 +36,12 @@ public class RecipeBuilder {
     public void editRecipe(Recipe recipe,String recipeText){
         recipe.setRecipeText(recipeText);
     }
+    public RecipeBuilder addRecipeName(String name){
+        this.name = name;
+        return this;
+    }
     public Recipe Build(){
-        return new Recipe(ingredientList,recipeText,mealType);
+        return new Recipe(ingredientList,recipeText,mealType,name);
     }
 
 }
