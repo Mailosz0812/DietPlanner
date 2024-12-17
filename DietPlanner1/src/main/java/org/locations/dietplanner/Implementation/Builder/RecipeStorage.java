@@ -34,4 +34,7 @@ public class RecipeStorage implements Serializable {
     public void removeRecipe(Recipe recipe){
         recipeList.remove(recipe);
     }
+    public List<Recipe> getRecipeList(){
+        return this.recipeList;
+    }
 }

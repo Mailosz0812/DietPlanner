@@ -1,5 +1,5 @@
 package org.locations.dietplanner.Interfaces;
 
-public interface ICommand {
-    void execute();
+public interface ICommand<T> {
+    T execute();
 }

@@ -74,4 +74,13 @@ public class MealService implements IMealsGroup, Serializable {
         }
         return groupedIngredients;
     }
+
+    @Override
+    public List<IMeal> getMeal() {
+        List<IMeal> allMeals = new ArrayList<>();
+        for (IMealsGroup iMealsGroup : MealsGroup) {
+            allMeals.addAll(iMealsGroup.getMeal());
+        }
+        return allMeals;
+    }
 }

@@ -82,4 +82,10 @@ class Meal implements IMealsGroup, IMeal, Serializable {
         return this.day;
     }
 
+    @Override
+    public List<IMeal> getMeal() {
+        List<IMeal> mealList = new ArrayList<>();
+        mealList.add(this);
+        return mealList;
+    }
 }

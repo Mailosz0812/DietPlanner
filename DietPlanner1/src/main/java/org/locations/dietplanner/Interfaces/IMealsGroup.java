@@ -12,6 +12,7 @@ public interface IMealsGroup {
     Double calculateCarb();
     Double calculateProtein();
     HashMap<IngredientType, List<Ingredient>> groupIngredients();
+    List<IMeal> getMeal();
 
 
 }
