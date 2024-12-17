@@ -31,3 +31,11 @@
 #calendarBackground{
     -fx-background-color: #d3c9a2;
 }
+
+#backgroundKaruzela{
+    -fx-background-color: green;
+}
+
+#logo{
+    -fx-border-radius: 20px;
+}
