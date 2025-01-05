@@ -3,13 +3,13 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Separator?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="787.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -59,15 +59,24 @@
                            </opaqueInsets>
                         </HBox>
                         <AnchorPane fx:id="backgroundKaruzela" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                        <HBox spacing="10" alignment="CENTER" prefHeight="100" prefWidth="600" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-                           <Label text="Sekcja 1" />
-                           <Separator orientation="VERTICAL" />
-                           <Label text="Sekcja 2" />
-                           <Separator orientation="VERTICAL" />
-                           <Label text="Sekcja 3" />
-                           <Separator orientation="VERTICAL" />
-                           <Label text="Sekcja 4" />
+                        <HBox alignment="CENTER" prefHeight="100" prefWidth="600" spacing="0">
+                           <VBox HBox.hgrow="ALWAYS" alignment="CENTER">
+                              <Label text="Sekcja 1" />
+                           </VBox>
+                           <Separator HBox.hgrow="ALWAYS" orientation="VERTICAL" />
+                           <VBox HBox.hgrow="ALWAYS" alignment="CENTER">
+                              <Label text="Sekcja 2" />
+                           </VBox>
+                           <Separator HBox.hgrow="ALWAYS" orientation="VERTICAL" />
+                           <VBox HBox.hgrow="ALWAYS" alignment="CENTER">
+                              <Label text="Sekcja 3" />
+                           </VBox>
+                           <Separator HBox.hgrow="ALWAYS" orientation="VERTICAL" />
+                           <VBox HBox.hgrow="ALWAYS" alignment="CENTER">
+                              <Label text="Sekcja 4" />
+                           </VBox>
                         </HBox>
+
                      </children>
                   </VBox>
                </children>
