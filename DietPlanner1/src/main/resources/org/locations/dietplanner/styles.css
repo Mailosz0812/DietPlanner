@@ -39,3 +39,7 @@
 #logo{
     -fx-border-radius: 20px;
 }
+
+#button_middle{
+    -fx-background-color: #e84805;
+}
