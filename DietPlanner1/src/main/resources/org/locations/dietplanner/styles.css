@@ -1,39 +1,31 @@
 .button{
     -fx-font-family: "Lucida Console";
-    -fx-background-color: #ADC178;
+    -fx-background-color: #89eabe;
     -fx-font-size: 14;
     -fx-font-weight: bold;
-    -fx-text-fill: #F0EAD2;
+    -fx-text-fill: black;
     -fx-background-radius: 10;
-    -fx-border-radius: 10;
+    -fx-border-radius: 5;
     -fx-padding: 5;
 }
 
 .button:hover{
     -fx-font-family: "Lucida Console";
-    -fx-background-color: #93a464;
+    -fx-background-color: #5a9a7f;
     -fx-font-size: 14;
     -fx-font-weight: bold;
-    -fx-text-fill: #F0EAD2;
+    -fx-text-fill: black;
     -fx-background-radius: 10;
     -fx-border-radius: 10;
     -fx-padding: 6;
 }
 
 #toolBarUpper{
-    -fx-background-color: #6C584C;
+    -fx-background-color: #a6c4b8;
 }
 
 #toolBarLeft{
-    -fx-background-color: #A98467;
-}
-
-#calendarBackground{
-    -fx-background-color: #d3c9a2;
-}
-
-#backgroundKaruzela{
-    -fx-background-color: green;
+    -fx-background-color: #a6c4b8;
 }
 
 #logo{
@@ -41,5 +33,13 @@
 }
 
 #button_middle{
-    -fx-background-color: #e84805;
+    -fx-background-color: #89eabe;
+}
+
+#HBoxFooter{
+    -fx-background-color: #44e38d;
+}
+
+#HBoxDate{
+    -fx-background-color: #44e38d;
 }

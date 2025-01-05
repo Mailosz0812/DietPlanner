@@ -22,18 +22,18 @@
                         <Image url="@logo.jpg" />
                      </image>
                   </ImageView>
-                  <ToolBar fx:id="toolBarUpper" HBox.hgrow="ALWAYS">
+                  <ToolBar fx:id="toolBarUpper" prefHeight="88.0" prefWidth="701.0" HBox.hgrow="ALWAYS">
                     <items>
-                      <Button fx:id="importButton" mnemonicParsing="false" text="Import" />
-                        <Button mnemonicParsing="false" text="Export" />
-                        <Button mnemonicParsing="false" text="Save" />
+                      <Button fx:id="importButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Import" />
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Export" />
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Save" />
                     </items>
                   </ToolBar>
                </children>
             </HBox>
             <HBox prefHeight="541.0" prefWidth="784.0" VBox.vgrow="ALWAYS">
                <children>
-                  <AnchorPane fx:id="toolBarLeft" prefHeight="470.0" prefWidth="80.0">
+                  <AnchorPane fx:id="toolBarLeft" prefHeight="419.0" prefWidth="86.0">
                      <children>
                         <Label layoutX="26.0" layoutY="85.0" text="TEST" />
                         <Label layoutX="26.0" layoutY="103.0" text="TEST" />
@@ -42,7 +42,7 @@
                   </AnchorPane>
                   <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                        <HBox fx:id="HBoxDate" alignment="CENTER" prefHeight="61.0" prefWidth="707.0" spacing="10.0">
                            <children>
                               <Button fx:id="arrow_left" mnemonicParsing="false" text="&lt;" />
                               <Button fx:id="minus3" mnemonicParsing="false" text="Button" />
@@ -93,19 +93,28 @@
                                  </children></VBox>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100" prefWidth="600" spacing="0">
+                        <HBox fx:id="HBoxFooter" alignment="CENTER" prefHeight="71.0" prefWidth="701.0" spacing="0">
                            <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
                               <Label text="Sekcja 1" />
                            </VBox>
-                           <Separator orientation="VERTICAL" HBox.hgrow="ALWAYS" />
+                           <Separator orientation="VERTICAL" prefHeight="51.0" prefWidth="6.0" HBox.hgrow="ALWAYS">
+                              <HBox.margin>
+                                 <Insets bottom="10.0" top="10.0" />
+                              </HBox.margin></Separator>
                            <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
                               <Label text="Sekcja 2" />
                            </VBox>
-                           <Separator orientation="VERTICAL" HBox.hgrow="ALWAYS" />
+                           <Separator orientation="VERTICAL" HBox.hgrow="ALWAYS">
+                              <HBox.margin>
+                                 <Insets bottom="10.0" top="10.0" />
+                              </HBox.margin></Separator>
                            <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
                               <Label text="Sekcja 3" />
                            </VBox>
-                           <Separator orientation="VERTICAL" HBox.hgrow="ALWAYS" />
+                           <Separator orientation="VERTICAL" HBox.hgrow="ALWAYS">
+                              <HBox.margin>
+                                 <Insets bottom="10.0" top="10.0" />
+                              </HBox.margin></Separator>
                            <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
                               <Label text="Sekcja 4" />
                            </VBox>
