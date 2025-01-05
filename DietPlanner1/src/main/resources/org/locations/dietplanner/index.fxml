@@ -58,21 +58,55 @@
                               <Insets />
                            </opaqueInsets>
                         </HBox>
-                        <AnchorPane fx:id="backgroundKaruzela" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                        <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <Label text="Śniadanie" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <Label text="Drugie Śniadanie" />
+                                       </children>
+                                    </HBox>
+                                 </children></VBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <Label text="Obiad" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <Label text="Kolacja" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="27.0" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <Label text="Deser" />
+                                       </children>
+                                    </HBox>
+                                 </children></VBox>
+                           </children>
+                        </HBox>
                         <HBox alignment="CENTER" prefHeight="100" prefWidth="600" spacing="0">
-                           <VBox HBox.hgrow="ALWAYS" alignment="CENTER">
+                           <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
                               <Label text="Sekcja 1" />
                            </VBox>
-                           <Separator HBox.hgrow="ALWAYS" orientation="VERTICAL" />
-                           <VBox HBox.hgrow="ALWAYS" alignment="CENTER">
+                           <Separator orientation="VERTICAL" HBox.hgrow="ALWAYS" />
+                           <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
                               <Label text="Sekcja 2" />
                            </VBox>
-                           <Separator HBox.hgrow="ALWAYS" orientation="VERTICAL" />
-                           <VBox HBox.hgrow="ALWAYS" alignment="CENTER">
+                           <Separator orientation="VERTICAL" HBox.hgrow="ALWAYS" />
+                           <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
                               <Label text="Sekcja 3" />
                            </VBox>
-                           <Separator HBox.hgrow="ALWAYS" orientation="VERTICAL" />
-                           <VBox HBox.hgrow="ALWAYS" alignment="CENTER">
+                           <Separator orientation="VERTICAL" HBox.hgrow="ALWAYS" />
+                           <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
                               <Label text="Sekcja 4" />
                            </VBox>
                         </HBox>
