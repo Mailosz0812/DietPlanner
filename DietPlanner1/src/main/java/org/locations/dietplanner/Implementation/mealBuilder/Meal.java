@@ -88,4 +88,13 @@ class Meal implements IMealsGroup, IMeal, Serializable {
         mealList.add(this);
         return mealList;
     }
+
+    @Override
+    public List<IMeal> getMealByDate(LocalDate date) {
+        List<IMeal> mealList = new ArrayList<>();
+        if(this.day.equals(date)){
+            mealList.add(this);
+        }
+        return mealList;
+    }
 }

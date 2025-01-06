@@ -48,7 +48,7 @@
                               <Button fx:id="arrow_left" text="&lt;" />
                               <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" pannable="true" pickOnBounds="false" prefHeight="58.0" prefViewportWidth="600.0" vbarPolicy="NEVER">
                                  <content>
-                                    <HBox fx:id="buttonContainer" alignment="CENTER" fillHeight="false" prefHeight="58.0" prefWidth="600.0">
+                                    <HBox fx:id="buttonContainer" alignment="CENTER" fillHeight="false" prefHeight="58.0" prefWidth="600.0" spacing="10.0">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
@@ -68,12 +68,12 @@
                            <children>
                               <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <HBox fx:id="hbox_sniadanie" alignment="CENTER" VBox.vgrow="ALWAYS">
+                                    <HBox fx:id="breakfastContainer" alignment="CENTER" VBox.vgrow="ALWAYS">
                                        <children>
                                           <Label text="Śniadanie" />
                                        </children>
                                     </HBox>
-                                    <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                                    <HBox fx:id="dinnerContainer" alignment="CENTER" VBox.vgrow="ALWAYS">
                                        <children>
                                           <Label text="Obiad" />
                                        </children>
@@ -81,17 +81,17 @@
                                  </children></VBox>
                               <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                                    <HBox fx:id="lunchContainer" alignment="CENTER" VBox.vgrow="ALWAYS">
                                        <children>
                                           <Label text="Drugie Śniadanie" />
                                        </children>
                                     </HBox>
-                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" VBox.vgrow="ALWAYS">
+                                    <HBox fx:id="supperContainer" alignment="CENTER" layoutX="10.0" layoutY="10.0" VBox.vgrow="ALWAYS">
                                        <children>
                                           <Label text="Kolacja" />
                                        </children>
                                     </HBox>
-                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="27.0" VBox.vgrow="ALWAYS">
+                                    <HBox fx:id="dessertContainer" alignment="CENTER" layoutX="10.0" layoutY="27.0" VBox.vgrow="ALWAYS">
                                        <children>
                                           <Label text="Deser" />
                                        </children>

@@ -6,6 +6,7 @@ import org.locations.dietplanner.Interfaces.IMeal;
 import org.locations.dietplanner.Interfaces.IMealsGroup;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -82,5 +83,13 @@ public class MealService implements IMealsGroup, Serializable {
             allMeals.addAll(iMealsGroup.getMeal());
         }
         return allMeals;
+    }
+    @Override
+    public List<IMeal> getMealByDate(LocalDate date){
+        List<IMeal> mealsByDate = new ArrayList<>();
+        for (IMealsGroup iMealsGroup : MealsGroup) {
+            mealsByDate.addAll(iMealsGroup.getMealByDate(date));
+        }
+        return mealsByDate;
     }
 }

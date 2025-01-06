@@ -1,0 +1,64 @@
+{
+  "MealsGroup": [
+    {
+      "day": "2024-11-25",
+      "recipe": {
+        "name": "Scrambled Eggs with Spinach",
+        "recipeText": "Whisk eggs with milk, sauté spinach, and cook together until set.",
+        "mealType": "BREAKFAST",
+        "ingredients": [
+          {
+            "name": "Eggs",
+            "type": "MEAT",
+            "calories": 155,
+            "fat": 11,
+            "carb": 1,
+            "protein": 13
+          },
+          {
+            "name": "Spinach",
+            "type": "VEGETABLES",
+            "calories": 23,
+            "fat": 0.4,
+            "carb": 3.6,
+            "protein": 2.9
+          },
+          {
+            "name": "Milk",
+            "type": "DAIRY",
+            "calories": 25,
+            "fat": 1.5,
+            "carb": 5,
+            "protein": 3.5
+          }
+        ]
+      }
+    },
+    {
+      "day": "2024-11-26",
+      "recipe": {
+        "name": "Oatmeal with Berries",
+        "recipeText": "Cook oatmeal in water, add berries on top.",
+        "mealType": "BREAKFAST",
+        "ingredients": [
+          {
+            "name": "Oatmeal",
+            "type": "CARB",
+            "calories": 151,
+            "fat": 3.5,
+            "carb": 27,
+            "protein": 5.9
+          },
+          {
+            "name": "Berries (mixed)",
+            "type": "FRUIT",
+            "calories": 57,
+            "fat": 0.5,
+            "carb": 14,
+            "protein": 1.1
+          }
+        ]
+      }
+    }
+  ]
+}
