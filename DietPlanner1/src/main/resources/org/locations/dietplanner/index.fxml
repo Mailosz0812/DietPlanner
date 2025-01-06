@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.AmbientLight?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -11,126 +12,170 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="787.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.locations.dietplanner.mainPageController">
-   <children>
-      <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <HBox maxHeight="70.4" prefHeight="86.0" VBox.vgrow="ALWAYS">
-               <children>
-                  <ImageView fx:id="logo" fitHeight="86.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
-                     <image>
-                        <Image url="@logo.jpg" />
-                     </image>
-                  </ImageView>
-                  <ToolBar fx:id="toolBarUpper" prefHeight="88.0" prefWidth="701.0" HBox.hgrow="ALWAYS">
-                    <items>
-                      <Button fx:id="importButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Import" />
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Export" />
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Save" />
-                    </items>
-                  </ToolBar>
-               </children>
-            </HBox>
-            <HBox prefHeight="541.0" prefWidth="784.0" VBox.vgrow="ALWAYS">
-               <children>
-                  <AnchorPane fx:id="toolBarLeft" prefHeight="419.0" prefWidth="86.0">
-                     <children>
-                        <Label layoutX="26.0" layoutY="85.0" text="TEST" />
-                        <Label layoutX="26.0" layoutY="103.0" text="TEST" />
-                        <Label layoutX="26.0" layoutY="121.0" text="TEST" />
-                     </children>
-                  </AnchorPane>
-                  <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-                     <children>
-                        <HBox alignment="CENTER" fillHeight="false" spacing="10.0">
-                           <children>
-                              <Button fx:id="arrow_left" text="&lt;" />
-                              <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" pannable="true" pickOnBounds="false" prefHeight="58.0" prefViewportWidth="600.0" vbarPolicy="NEVER">
-                                 <content>
-                                    <HBox fx:id="buttonContainer" alignment="CENTER" fillHeight="false" prefHeight="58.0" prefWidth="600.0" spacing="10.0">
-                                       <opaqueInsets>
-                                          <Insets />
-                                       </opaqueInsets>
-                                    </HBox>
-                                 </content>
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </ScrollPane>
-                              <Button fx:id="arrow_right" text="&gt;" />
-                           </children>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                           <children>
-                              <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-                                 <children>
-                                    <HBox fx:id="breakfastContainer" alignment="CENTER" VBox.vgrow="ALWAYS">
-                                       <children>
-                                          <Label text="Śniadanie" />
-                                       </children>
-                                    </HBox>
-                                    <HBox fx:id="dinnerContainer" alignment="CENTER" VBox.vgrow="ALWAYS">
-                                       <children>
-                                          <Label text="Obiad" />
-                                       </children>
-                                    </HBox>
-                                 </children></VBox>
-                              <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-                                 <children>
-                                    <HBox fx:id="lunchContainer" alignment="CENTER" VBox.vgrow="ALWAYS">
-                                       <children>
-                                          <Label text="Drugie Śniadanie" />
-                                       </children>
-                                    </HBox>
-                                    <HBox fx:id="supperContainer" alignment="CENTER" layoutX="10.0" layoutY="10.0" VBox.vgrow="ALWAYS">
-                                       <children>
-                                          <Label text="Kolacja" />
-                                       </children>
-                                    </HBox>
-                                    <HBox fx:id="dessertContainer" alignment="CENTER" layoutX="10.0" layoutY="27.0" VBox.vgrow="ALWAYS">
-                                       <children>
-                                          <Label text="Deser" />
-                                       </children>
-                                    </HBox>
-                                 </children></VBox>
-                           </children>
-                        </HBox>
-                        <HBox fx:id="HBoxFooter" alignment="CENTER" prefHeight="71.0" prefWidth="701.0" spacing="0">
-                           <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
-                              <Label text="Sekcja 1" />
-                           </VBox>
-                           <Separator orientation="VERTICAL" prefHeight="51.0" prefWidth="6.0" HBox.hgrow="ALWAYS">
-                              <HBox.margin>
-                                 <Insets bottom="10.0" top="10.0" />
-                              </HBox.margin></Separator>
-                           <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
-                              <Label text="Sekcja 2" />
-                           </VBox>
-                           <Separator orientation="VERTICAL" HBox.hgrow="ALWAYS">
-                              <HBox.margin>
-                                 <Insets bottom="10.0" top="10.0" />
-                              </HBox.margin></Separator>
-                           <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
-                              <Label text="Sekcja 3" />
-                           </VBox>
-                           <Separator orientation="VERTICAL" HBox.hgrow="ALWAYS">
-                              <HBox.margin>
-                                 <Insets bottom="10.0" top="10.0" />
-                              </HBox.margin></Separator>
-                           <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
-                              <Label text="Sekcja 4" />
-                           </VBox>
-                        </HBox>
+    <children>
+        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <HBox maxHeight="70.4" prefHeight="86.0" VBox.vgrow="ALWAYS">
+                    <children>
+                        <ImageView fx:id="logo" fitHeight="86.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                            <image>
+                                <Image url="@logo.jpg" />
+                            </image>
+                        </ImageView>
+                        <ToolBar fx:id="toolBarUpper" prefHeight="88.0" prefWidth="701.0" HBox.hgrow="ALWAYS">
+                            <items>
+                                <Button fx:id="importButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Import" />
+                                <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Export" />
+                                <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Save" />
+                                <AmbientLight lightOn="true">
+                                    <color>
+                                        <Color red="0.27344992756843567" blue="1.0" />
+                                    </color>
+                                </AmbientLight>
+                            </items>
+                        </ToolBar>
+                    </children>
+                </HBox>
+                <HBox prefHeight="541.0" prefWidth="784.0" VBox.vgrow="ALWAYS">
+                    <children>
+                        <AnchorPane fx:id="toolBarLeft" prefHeight="419.0" prefWidth="86.0">
+                            <children>
+                                <Label layoutX="26.0" layoutY="85.0" text="TEST" />
+                                <Label layoutX="26.0" layoutY="103.0" text="TEST" />
+                                <Label layoutX="26.0" layoutY="121.0" text="TEST" />
+                            </children>
+                        </AnchorPane>
+                        <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                            <children>
+                                <HBox fx:id="hbox_karuzela" alignment="CENTER" fillHeight="false" spacing="10.0">
+                                    <children>
+                                        <Button fx:id="arrow_left" text="&lt;" />
+                                        <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" pannable="true" pickOnBounds="false" prefHeight="58.0" prefViewportWidth="600.0" vbarPolicy="NEVER">
+                                            <content>
+                                                <HBox fx:id="buttonContainer" alignment="CENTER" fillHeight="false" prefHeight="58.0" prefWidth="600.0" spacing="10.0">
+                                                    <opaqueInsets>
+                                                        <Insets />
+                                                    </opaqueInsets>
+                                                </HBox>
+                                            </content>
+                                            <HBox.margin>
+                                                <Insets />
+                                            </HBox.margin>
+                                        </ScrollPane>
+                                        <Button fx:id="arrow_right" text="&gt;" />
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets />
+                                    </VBox.margin>
+                                </HBox>
+                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0" VBox.vgrow="ALWAYS">
+                                    <children>
+                                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="15.0" HBox.hgrow="ALWAYS">
+                                            <children>
+                                                <HBox fx:id="breakfastContainer" alignment="CENTER" VBox.vgrow="ALWAYS">
+                                                    <children>
+                                                        <AnchorPane fx:id="breakfastAnchor" HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <Label alignment="CENTER" text="Śniadanie" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                            </children>
+                                                        </AnchorPane>
+                                                    </children>
+                                       <padding>
+                                          <Insets left="15.0" top="15.0" />
+                                       </padding>
+                                                </HBox>
+                                                <HBox fx:id="dinnerContainer" alignment="CENTER" VBox.vgrow="ALWAYS">
+                                                    <children>
+                                                        <AnchorPane fx:id="dinnerAnchor" HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <Label alignment="CENTER" text="Obiad" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                            </children>
+                                                        </AnchorPane>
+                                                    </children>
+                                       <padding>
+                                          <Insets bottom="15.0" left="15.0" />
+                                       </padding>
+                                                </HBox>
+                                            </children>
+                                        </VBox>
+                                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="15.0" HBox.hgrow="ALWAYS">
+                                            <children>
+                                                <HBox fx:id="lunchContainer" alignment="CENTER" VBox.vgrow="ALWAYS">
+                                                    <children>
+                                                        <AnchorPane fx:id="lunchAnchor" HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <Label alignment="CENTER" text="Drugie Śniadanie" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                            </children>
+                                                        </AnchorPane>
+                                                    </children>
+                                       <padding>
+                                          <Insets right="15.0" top="15.0" />
+                                       </padding>
+                                                </HBox>
+                                                <HBox fx:id="supperContainer" alignment="CENTER" VBox.vgrow="ALWAYS">
+                                                    <children>
+                                                        <AnchorPane fx:id="supperAnchor" HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <Label alignment="CENTER" text="Kolacja" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                            </children>
+                                                        </AnchorPane>
+                                                    </children>
+                                       <padding>
+                                          <Insets right="15.0" />
+                                       </padding>
+                                                </HBox>
+                                                <HBox fx:id="dessertContainer" alignment="CENTER" VBox.vgrow="ALWAYS">
+                                                    <children>
+                                                        <AnchorPane fx:id="dessertAnchor" HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <Label alignment="CENTER" text="Deser" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                            </children>
+                                                        </AnchorPane>
+                                                    </children>
+                                       <padding>
+                                          <Insets bottom="15.0" right="15.0" />
+                                       </padding>
+                                                </HBox>
+                                            </children>
+                                        </VBox>
 
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-   </children>
+                                    </children>
+                                </HBox>
+                                <HBox fx:id="HBoxFooter" alignment="CENTER" prefHeight="71.0" prefWidth="701.0" spacing="0">
+                                    <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                                        <Label text="Sekcja 1" />
+                                    </VBox>
+                                    <Separator orientation="VERTICAL" prefHeight="51.0" prefWidth="6.0" HBox.hgrow="ALWAYS">
+                                        <HBox.margin>
+                                            <Insets bottom="10.0" top="10.0" />
+                                        </HBox.margin></Separator>
+                                    <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                                        <Label text="Sekcja 2" />
+                                    </VBox>
+                                    <Separator orientation="VERTICAL" HBox.hgrow="ALWAYS">
+                                        <HBox.margin>
+                                            <Insets bottom="10.0" top="10.0" />
+                                        </HBox.margin></Separator>
+                                    <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                                        <Label text="Sekcja 3" />
+                                    </VBox>
+                                    <Separator orientation="VERTICAL" HBox.hgrow="ALWAYS">
+                                        <HBox.margin>
+                                            <Insets bottom="10.0" top="10.0" />
+                                        </HBox.margin></Separator>
+                                    <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                                        <Label text="Sekcja 4" />
+                                    </VBox>
+                                </HBox>
+
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
 </AnchorPane>

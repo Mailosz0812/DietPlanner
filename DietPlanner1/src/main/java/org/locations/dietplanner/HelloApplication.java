@@ -16,6 +16,8 @@ public class HelloApplication extends Application {
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
         stage.setTitle("Test");
         stage.setScene(scene);
+        stage.setMinWidth(scene.getWidth());
+        stage.setMinHeight(scene.getHeight());
         stage.show();
     }
 
