@@ -39,11 +39,14 @@ public class mainPageController {
 
     @FXML
     private ToolBar toolBarUpper;
+    private Button lastClickedButton;
 
     private final DateTimeFormatter dayFormatter = DateTimeFormatter.ofPattern("dd");
     private final DateTimeFormatter dayOfWeekFormatter = DateTimeFormatter.ofPattern("EEE",new Locale("en","EN"));
     @FXML
     public void initialize() {
+        buttonContainer.setStyle("-fx-background-color: green");
+        scrollPane.setStyle("-fx-background-color: green");
         final LocalDate[] currentDate = {LocalDate.now()};
         loadWeek(currentDate[0]);
         arrow_left.setOnAction(event -> {
@@ -66,8 +69,18 @@ public class mainPageController {
             Button button = new Button();
             String text = day.format(dayFormatter) + "\n" + day.format(dayOfWeekFormatter);
             button.setText(text);
-            button.setStyle("-fx-text-alignment: center; -fx-alignment: center;-fx-padding: 10px;");
-            button.setMinWidth(30.0);
+            button.setStyle("-fx-background-color: green;-fx-text-alignment: center; -fx-alignment: center;-fx-padding: 10px;");
+            button.setMinWidth(50.0);
+            button.setMinHeight(50.0);
+            button.setOnAction(actionEvent -> {
+                if (lastClickedButton != null) {
+                    lastClickedButton.setStyle("-fx-background-color: green; -fx-text-alignment: center; -fx-alignment: center; -fx-padding: 10px;");
+                }
+
+                button.setStyle("-fx-background-color: red; -fx-text-alignment: center; -fx-alignment: center; -fx-padding: 10px;");
+
+                lastClickedButton = button;
+            });
             buttonContainer.getChildren().add(button);
         }
     }
