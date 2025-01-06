@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="787.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="787.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.locations.dietplanner.mainPageController">
    <children>
       <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -42,21 +43,26 @@
                   </AnchorPane>
                   <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <HBox fx:id="HBoxDate" alignment="CENTER" prefHeight="61.0" prefWidth="707.0" spacing="10.0">
+                        <HBox alignment="CENTER" fillHeight="false" spacing="10.0">
                            <children>
-                              <Button fx:id="arrow_left" mnemonicParsing="false" text="&lt;" />
-                              <Button fx:id="minus3" mnemonicParsing="false" text="Button" />
-                              <Button fx:id="minus2" mnemonicParsing="false" text="Button" />
-                              <Button fx:id="minus1" mnemonicParsing="false" text="Button" />
-                              <Button fx:id="button_middle" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Środek" />
-                              <Button fx:id="plus1" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Button" />
-                              <Button fx:id="plus2" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Button" />
-                              <Button fx:id="plus3" layoutX="331.0" layoutY="10.0" mnemonicParsing="false" text="Button" />
-                              <Button fx:id="arrow_right" layoutX="385.0" layoutY="10.0" mnemonicParsing="false" text="&gt;" />
+                              <Button fx:id="arrow_left" text="&lt;" />
+                              <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" pannable="true" pickOnBounds="false" prefHeight="58.0" prefViewportWidth="400.0" vbarPolicy="NEVER">
+                                 <content>
+                                    <HBox fx:id="buttonContainer" alignment="CENTER" fillHeight="false" spacing="10.0">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </HBox>
+                                 </content>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </ScrollPane>
+                              <Button fx:id="arrow_right" text="&gt;" />
                            </children>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                            <children>
@@ -67,9 +73,9 @@
                                           <Label text="Śniadanie" />
                                        </children>
                                     </HBox>
-                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" VBox.vgrow="ALWAYS">
+                                    <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                                        <children>
-                                          <Label text="Drugie Śniadanie" />
+                                          <Label text="Obiad" />
                                        </children>
                                     </HBox>
                                  </children></VBox>
@@ -77,7 +83,7 @@
                                  <children>
                                     <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                                        <children>
-                                          <Label text="Obiad" />
+                                          <Label text="Drugie Śniadanie" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" VBox.vgrow="ALWAYS">
