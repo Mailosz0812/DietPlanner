@@ -8,9 +8,9 @@ public class ImportToJSONCommand<T> implements ICommand<T> {
     private String fileName;
     private TypeReference<T> type;
 
-    public ImportToJSONCommand(MemoryService memoryService, String fileName, TypeReference<T> type){
+    public ImportToJSONCommand(String fileName, TypeReference<T> type){
         this.fileName = fileName;
-        this.memoryService = memoryService;
+        this.memoryService = MemoryService.getInstance();
         this.type = type;
     }
     @Override
