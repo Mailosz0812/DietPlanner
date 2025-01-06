@@ -20,11 +20,8 @@
     -fx-padding: 6;
 }
 
+#toolBarLeft,
 #toolBarUpper{
-    -fx-background-color: #9fc7b8;
-}
-
-#toolBarLeft{
     -fx-background-color: #9fc7b8;
 }
 
@@ -48,13 +45,8 @@
     -fx-background-color: #f6d646;
 }
 
+#arrow_right,
 #arrow_left{
-    -fx-background-color: #f6d646;
-    -fx-font-size: 30;
-    -fx-font-weight: bold;
-}
-
-#arrow_right{
     -fx-background-color: #f6d646;
     -fx-font-size: 30;
     -fx-font-weight: bold;
@@ -70,6 +62,6 @@
     -fx-background-radius: 15;
     -fx-border-radius: 15;
     -fx-border-color: lightgray;
-    -fx-border-width: 1;       
+    -fx-border-width: 1;
 }
 
