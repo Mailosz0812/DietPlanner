@@ -21,11 +21,11 @@
 }
 
 #toolBarUpper{
-    -fx-background-color: #a6c4b8;
+    -fx-background-color: #9fc7b8;
 }
 
 #toolBarLeft{
-    -fx-background-color: #a6c4b8;
+    -fx-background-color: #9fc7b8;
 }
 
 #logo{
@@ -42,4 +42,20 @@
 
 #HBoxDate{
     -fx-background-color: #44e38d;
+}
+
+#hbox_karuzela{
+    -fx-background-color: #f6d646;
+}
+
+#arrow_left{
+    -fx-background-color: #f6d646;
+    -fx-font-size: 30;
+    -fx-font-weight: bold;
+}
+
+#arrow_right{
+    -fx-background-color: #f6d646;
+    -fx-font-size: 30;
+    -fx-font-weight: bold;
 }
