@@ -31,11 +31,27 @@ import java.util.List;
 import java.util.Locale;
 
 public class mainPageController {
+
     @FXML
     private AnchorPane AnchorPane_Left;
 
     @FXML
-    private HBox HBoxFooter;
+    private HBox HBox_Content_Footer;
+
+    @FXML
+    private HBox HBox_Content_Middle;
+
+    @FXML
+    private HBox HBox_Content_Top;
+
+    @FXML
+    private Button HBox_Content_Top_Arrow_Left;
+
+    @FXML
+    private Button HBox_Content_Top_Arrow_Right;
+
+    @FXML
+    private ScrollPane HBox_Content_Top_ScrollPane;
 
     @FXML
     private HBox HBox_Down;
@@ -51,12 +67,6 @@ public class mainPageController {
 
     @FXML
     private VBox VBox_Content;
-
-    @FXML
-    private Button arrow_left;
-
-    @FXML
-    private Button arrow_right;
 
     @FXML
     private AnchorPane breakfastAnchor;
@@ -89,9 +99,6 @@ public class mainPageController {
     private VBox fatsContainer;
 
     @FXML
-    private HBox hbox_karuzela;
-
-    @FXML
     private Button importButton;
 
     @FXML
@@ -105,9 +112,6 @@ public class mainPageController {
 
     @FXML
     private VBox proteinContainer;
-
-    @FXML
-    private ScrollPane scrollPane;
 
     @FXML
     private AnchorPane supperAnchor;
@@ -129,8 +133,8 @@ public class mainPageController {
         command = new ImportToJSONCommand("meals.json",typeReference);
         mealsGroups = (IMealsGroup) command.execute();
         System.out.println(mealsGroups.toStringGroups());
-        buttonContainer.setStyle("-fx-background-color: #f6d646");
-        scrollPane.setStyle("-fx-background-color: #f6d646");
+        buttonContainer.setStyle("-fx-background-color: #76C1C4");
+        HBox_Content_Top_ScrollPane.setStyle("-fx-background-color: #76C1C4");
         final LocalDate[] currentDate = {LocalDate.now()};
         mealsContainers = new HashMap<>();
         mealsContainers.put(MealType.BREAKFAST, breakfastAnchor);
@@ -140,12 +144,12 @@ public class mainPageController {
         mealsContainers.put(MealType.SUPPER,supperAnchor);
         loadWeek(currentDate[0]);
 
-        arrow_left.setOnAction(event -> {
+        HBox_Content_Top_Arrow_Left.setOnAction(event -> {
             System.out.println("W lewo");
             currentDate[0] = currentDate[0].minusWeeks(1);
             loadWeek(currentDate[0]);
         });
-        arrow_right.setOnAction(event -> {
+        HBox_Content_Top_Arrow_Right.setOnAction(event -> {
             System.out.println("W prawo");
             currentDate[0] = currentDate[0].plusWeeks(1);
             loadWeek(currentDate[0]);
@@ -162,18 +166,18 @@ public class mainPageController {
             button.setText(text);
             if(day.equals(startDate)){
                 lastClickedButton = button;
-                button.setStyle("-fx-background-color: #f64646; -fx-text-alignment: center; -fx-alignment: center; -fx-padding: 10px;");
+                button.setStyle("-fx-background-color: #56A3A6; -fx-text-alignment: center; -fx-alignment: center; -fx-padding: 10px;");
                 loadMeals(startDate);
-                loadMacros();
+                //loadMacros();
             }
             else {
-                button.setStyle("-fx-background-color: #f6d646;-fx-text-alignment: center; -fx-alignment: center;-fx-padding: 10px;");
+                button.setStyle("-fx-background-color: #76C1C4;-fx-text-alignment: center; -fx-alignment: center;-fx-padding: 10px;");
                 button.setMinWidth(50.0);
                 button.setMinHeight(50.0);
             }
                 button.setOnAction(actionEvent -> {
-                    lastClickedButton.setStyle("-fx-background-color: #f6d646; -fx-text-alignment: center; -fx-alignment: center; -fx-padding: 10px;");
-                    button.setStyle("-fx-background-color: #f64646; -fx-text-alignment: center; -fx-alignment: center; -fx-padding: 10px;");
+                    lastClickedButton.setStyle("-fx-background-color: #76C1C4; -fx-text-alignment: center; -fx-alignment: center; -fx-padding: 10px;");
+                    button.setStyle("-fx-background-color: #56A3A6; -fx-text-alignment: center; -fx-alignment: center; -fx-padding: 10px;");
                     lastClickedButton = button;
                     loadMeals(day);
                 });
@@ -198,12 +202,21 @@ public class mainPageController {
 
 
     }
+    
     private void addingMealHandler(AnchorPane container){
         Button button = new Button("Add Meal");
         container.getChildren().add(button);
+        AnchorPane.setTopAnchor(button, container.getHeight() / 2 - button.getHeight() / 2);
+        AnchorPane.setLeftAnchor(button, container.getWidth() / 2 - button.getWidth() / 2);
         button.setOnAction(actionEvent -> {
             container.getChildren().clear();
             container.getChildren().add(new Label("Meal added"));
+        });
+        container.widthProperty().addListener((obs, oldVal, newVal) -> {
+            AnchorPane.setLeftAnchor(button, newVal.doubleValue() / 2 - button.getWidth() / 2);
+        });
+        container.heightProperty().addListener((obs, oldVal, newVal) -> {
+            AnchorPane.setTopAnchor(button, newVal.doubleValue() / 2 - button.getHeight() / 2);
         });
     }
     private String formatMealInfo(IMeal meal) {
