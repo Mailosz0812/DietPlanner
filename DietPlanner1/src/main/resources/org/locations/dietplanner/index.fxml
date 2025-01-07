@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="787.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.locations.dietplanner.mainPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="787.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.locations.dietplanner.mainPageController">
     <children>
         <VBox fx:id="VBox_All" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -145,28 +145,28 @@
                                     </children>
                                 </HBox>
                                 <HBox fx:id="HBoxFooter" alignment="CENTER" prefHeight="71.0" prefWidth="701.0" spacing="0">
-                                    <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                                    <VBox fx:id="caloriesContainer" alignment="CENTER" HBox.hgrow="ALWAYS">
                                         <Label text="Sekcja 1" />
                                     </VBox>
                                     <Separator orientation="VERTICAL" prefHeight="51.0" prefWidth="6.0" HBox.hgrow="ALWAYS">
                                         <HBox.margin>
                                             <Insets bottom="10.0" top="10.0" />
                                         </HBox.margin></Separator>
-                                    <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                                    <VBox fx:id="carbsContainer" alignment="CENTER" HBox.hgrow="ALWAYS">
                                         <Label text="Sekcja 2" />
                                     </VBox>
                                     <Separator orientation="VERTICAL" HBox.hgrow="ALWAYS">
                                         <HBox.margin>
                                             <Insets bottom="10.0" top="10.0" />
                                         </HBox.margin></Separator>
-                                    <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                                    <VBox fx:id="proteinContainer" alignment="CENTER" HBox.hgrow="ALWAYS">
                                         <Label text="Sekcja 3" />
                                     </VBox>
                                     <Separator orientation="VERTICAL" HBox.hgrow="ALWAYS">
                                         <HBox.margin>
                                             <Insets bottom="10.0" top="10.0" />
                                         </HBox.margin></Separator>
-                                    <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                                    <VBox fx:id="fatsContainer" alignment="CENTER" HBox.hgrow="ALWAYS">
                                         <Label text="Sekcja 4" />
                                     </VBox>
                                 </HBox>

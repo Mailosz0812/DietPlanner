@@ -14,7 +14,6 @@ public class Recipe implements Serializable {
     private String name;
 
     public Recipe(){
-
     }
     public Recipe(List<Ingredient> ingredientList,String recipeText,MealType mealType,String name){
         this.recipeText = recipeText;
@@ -22,9 +21,11 @@ public class Recipe implements Serializable {
         this.mealType = mealType;
         this.name = name;
     }
+
     public List<Ingredient> getIngredientList(){
         return this.ingredientList;
     }
+
     public String getName(){
         return this.name;
     }
