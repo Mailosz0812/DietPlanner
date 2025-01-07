@@ -12,6 +12,9 @@ public class Ingredient implements Serializable {
     private IngredientType type;
     private String name;
 
+    public Ingredient(){
+
+    }
     public Ingredient(Double calories,Double fat,Double carb,Double protein,
     String type,String name){
         this.calories = calories;
@@ -42,5 +45,8 @@ public class Ingredient implements Serializable {
     }
     public String getName(){
         return this.name;
+    }
+    public String toString(){
+        return this.name +", "+ this.type;
     }
 }

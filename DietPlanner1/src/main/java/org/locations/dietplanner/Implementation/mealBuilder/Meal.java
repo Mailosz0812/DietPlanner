@@ -1,5 +1,6 @@
 package org.locations.dietplanner.Implementation.mealBuilder;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.locations.dietplanner.Implementation.Builder.Ingredient;
 import org.locations.dietplanner.Implementation.Builder.Recipe;
 import org.locations.dietplanner.Implementation.IngredientType;
@@ -14,10 +15,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-class Meal implements IMealsGroup, IMeal, Serializable {
+@JsonTypeName("Meal")
+public class Meal implements IMealsGroup, IMeal, Serializable {
     private Recipe recipe;
     private LocalDate day;
 
+    public Meal() {
+    }
     Meal(Recipe recipe,LocalDate day){
         this.day = day;
         this.recipe = recipe;
@@ -66,10 +70,6 @@ class Meal implements IMealsGroup, IMeal, Serializable {
 
     }
 
-    @Override
-    public String toStringWithDay() {
-        return "Breakfast "+ day.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.getDefault());
-    }
 
     @Override
     public void setDay(String date) {
@@ -96,5 +96,15 @@ class Meal implements IMealsGroup, IMeal, Serializable {
             mealList.add(this);
         }
         return mealList;
+    }
+
+    @Override
+    public List<String> toStringGroups() {
+        List<String> stringList = new ArrayList<>();
+        StringBuilder string = new StringBuilder();
+        string.append(this.recipe.toString());
+        string.append(this.day.toString());
+        stringList.add(string.toString());
+        return stringList;
     }
 }

@@ -1,17 +1,22 @@
 package org.locations.dietplanner.Implementation.Builder;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.locations.dietplanner.Implementation.MealType;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
+@JsonTypeName("org.locations.dietplanner.Implementation.Builder.Recipe")
 public class Recipe implements Serializable {
     private List<Ingredient> ingredientList;
     private String recipeText;
     private MealType mealType;
     private String name;
-    Recipe(List<Ingredient> ingredientList,String recipeText,MealType mealType,String name){
+
+    public Recipe(){
+
+    }
+    public Recipe(List<Ingredient> ingredientList,String recipeText,MealType mealType,String name){
         this.recipeText = recipeText;
         this.ingredientList = ingredientList;
         this.mealType = mealType;
@@ -59,4 +64,24 @@ public class Recipe implements Serializable {
         this.recipeText = recipeText;
     }
 
+    public MealType getMealType() {
+        return mealType;
+    }
+
+    public void setMealType(MealType mealType) {
+        this.mealType = mealType;
+    }
+
+    public String getRecipeText() {
+        return recipeText;
+    }
+    public String toString(){
+        StringBuilder string = new StringBuilder();
+        string.append(this.name);
+        for (Ingredient ingredient : ingredientList) {
+            string.append(ingredient.toString());
+        }
+        string.append(this.mealType.toString());
+        return string.toString();
+    }
 }

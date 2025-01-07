@@ -1,5 +1,8 @@
 package org.locations.dietplanner.Implementation.Composite;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.locations.dietplanner.Implementation.Builder.Ingredient;
 import org.locations.dietplanner.Implementation.IngredientType;
 import org.locations.dietplanner.Interfaces.IMeal;
@@ -12,9 +15,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@JsonTypeName("MealService")
 public class MealService implements IMealsGroup, Serializable {
+    @JsonProperty("MealsGroup")
     private List<IMealsGroup> MealsGroup;
 
+    @JsonCreator
     public MealService(){
         this.MealsGroup = new ArrayList<>();
 
@@ -91,5 +97,14 @@ public class MealService implements IMealsGroup, Serializable {
             mealsByDate.addAll(iMealsGroup.getMealByDate(date));
         }
         return mealsByDate;
+    }
+
+    @Override
+    public List<String> toStringGroups() {
+        List<String> toStringGroups = new ArrayList<>();
+        for (IMealsGroup iMealsGroup : MealsGroup) {
+            toStringGroups.addAll(iMealsGroup.toStringGroups());
+        }
+        return toStringGroups;
     }
 }

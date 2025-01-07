@@ -5,24 +5,30 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.core.type.TypeReference;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToolBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import org.locations.dietplanner.Implementation.Builder.Ingredient;
+import org.locations.dietplanner.Implementation.MealType;
 import org.locations.dietplanner.Implementation.command.ExportFromJSONCommand;
 import org.locations.dietplanner.Implementation.command.ImportToJSONCommand;
 import org.locations.dietplanner.Implementation.command.MemoryService;
+import org.locations.dietplanner.Implementation.mealBuilder.Meal;
 import org.locations.dietplanner.Interfaces.ICommand;
+import org.locations.dietplanner.Interfaces.IMeal;
 import org.locations.dietplanner.Interfaces.IMealsGroup;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
 public class mainPageController {
-
     @FXML
     private HBox HBoxFooter;
 
@@ -33,16 +39,28 @@ public class mainPageController {
     private Button arrow_right;
 
     @FXML
+    private AnchorPane breakfastAnchor;
+
+    @FXML
     private HBox breakfastContainer;
 
     @FXML
     private HBox buttonContainer;
 
     @FXML
+    private AnchorPane dessertAnchor;
+
+    @FXML
     private HBox dessertContainer;
 
     @FXML
+    private AnchorPane dinnerAnchor;
+
+    @FXML
     private HBox dinnerContainer;
+
+    @FXML
+    private HBox hbox_karuzela;
 
     @FXML
     private Button importButton;
@@ -51,10 +69,16 @@ public class mainPageController {
     private ImageView logo;
 
     @FXML
+    private AnchorPane lunchAnchor;
+
+    @FXML
     private HBox lunchContainer;
 
     @FXML
     private ScrollPane scrollPane;
+
+    @FXML
+    private AnchorPane supperAnchor;
 
     @FXML
     private HBox supperContainer;
@@ -66,15 +90,17 @@ public class mainPageController {
     private ToolBar toolBarUpper;
     private Button lastClickedButton;
     private ICommand command;
+    private IMealsGroup mealsGroups;
 
     private final DateTimeFormatter dayFormatter = DateTimeFormatter.ofPattern("dd");
     private final DateTimeFormatter dayOfWeekFormatter = DateTimeFormatter.ofPattern("EEE",new Locale("en","EN"));
     @FXML
     public void initialize() {
 
-        TypeReference<List<IMealsGroup>> typeReference = new TypeReference<List<IMealsGroup>>() {};
+        TypeReference<IMealsGroup> typeReference = new TypeReference<IMealsGroup>() {};
         command = new ImportToJSONCommand("meals.json",typeReference);
-        command.execute();
+        mealsGroups = (IMealsGroup) command.execute();
+        System.out.println(mealsGroups.toStringGroups());
         buttonContainer.setStyle("-fx-background-color: #f6d646");
         scrollPane.setStyle("-fx-background-color: #f6d646");
         final LocalDate[] currentDate = {LocalDate.now()};
@@ -93,7 +119,7 @@ public class mainPageController {
 
     private void loadWeek(LocalDate startDate){
         buttonContainer.getChildren().clear();
-        LocalDate firstDayOfWeek = startDate.with(java.time.DayOfWeek.MONDAY);
+        LocalDate firstDayOfWeek = startDate.with(DayOfWeek.MONDAY);
         for (int i = 0; i < 7; i++) {
             LocalDate day = firstDayOfWeek.plusDays(i);
             System.out.println(day);
@@ -111,15 +137,31 @@ public class mainPageController {
                 button.setStyle("-fx-background-color: #f64646; -fx-text-alignment: center; -fx-alignment: center; -fx-padding: 10px;");
 
                 lastClickedButton = button;
-                loadMeals(day);
-
+                HashMap<MealType,AnchorPane> mealsContainers = new HashMap<>();
+                mealsContainers.put(MealType.BREAKFAST, breakfastAnchor);
+                mealsContainers.put(MealType.LUNCH, lunchAnchor);
+                mealsContainers.put(MealType.DINNER, dinnerAnchor);
+                mealsContainers.put(MealType.DESSERT, dessertAnchor);
+                mealsContainers.put(MealType.SUPPER,supperAnchor);
+                loadMeals(day,mealsContainers);
             });
             buttonContainer.getChildren().add(button);
         }
     }
-    private void loadMeals(LocalDate currentDate){
+    private void loadMeals(LocalDate currentDate,HashMap<MealType,AnchorPane> mealsContainers){
+        List<IMeal> meals = mealsGroups.getMealByDate(currentDate);
+        mealsContainers.values().forEach(container -> container.getChildren().clear());
+        for (IMeal meal : meals) {
+            MealType mealType = meal.getRecipe().getMealType();
+            AnchorPane container = mealsContainers.get(mealType);
+            Label mealLabel = new Label(formatMealInfo(meal));
+            container.getChildren().add(mealLabel);
+        }
 
-
-
+    }
+    private String formatMealInfo(IMeal meal) {
+        return meal.getRecipe().getName() + "\n" +
+                meal.getRecipe().getRecipeText() + "\n" +
+                "Kalorie: " + meal.getRecipe().getIngredientList().stream().mapToDouble(Ingredient::getCalories).sum();
     }
 }

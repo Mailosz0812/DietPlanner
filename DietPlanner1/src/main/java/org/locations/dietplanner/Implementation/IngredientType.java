@@ -8,6 +8,7 @@ public enum IngredientType {
     DRINKS,
     SWEETS,
     HERBS,
+    GRAIN,
     OTHER;
     public static IngredientType getIngredientType(String type){
         try{
