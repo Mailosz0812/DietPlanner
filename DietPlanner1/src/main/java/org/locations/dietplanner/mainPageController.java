@@ -164,7 +164,7 @@ public class mainPageController {
                 lastClickedButton = button;
                 button.setStyle("-fx-background-color: #f64646; -fx-text-alignment: center; -fx-alignment: center; -fx-padding: 10px;");
                 loadMeals(startDate);
-                loadMacros();
+                loadMacros(startDate);
             }
             else {
                 button.setStyle("-fx-background-color: #f6d646;-fx-text-alignment: center; -fx-alignment: center;-fx-padding: 10px;");
@@ -176,8 +176,8 @@ public class mainPageController {
                     button.setStyle("-fx-background-color: #f64646; -fx-text-alignment: center; -fx-alignment: center; -fx-padding: 10px;");
                     lastClickedButton = button;
                     loadMeals(day);
+                    loadMacros(day);
                 });
-
             buttonContainer.getChildren().add(button);
         }
     }
@@ -212,12 +212,25 @@ public class mainPageController {
                 "Kalorie: " + meal.getRecipe().getIngredientList().stream().mapToDouble(Ingredient::getCalories).sum();
     }
     private void loadMacros(LocalDate day){
+        caloriesContainer.getChildren().clear();
+        proteinContainer.getChildren().clear();
+        fatsContainer.getChildren().clear();
+        carbsContainer.getChildren().clear();
         List<IMeal> meals = mealsGroups.getMealByDate(day);
-        
+        double calories = 0;
+        double proteins = 0;
+        double fats = 0;
+        double carbs = 0;
         for (IMeal meal : meals) {
             Recipe currentRecipe = meal.getRecipe();
-
-
+            calories+=currentRecipe.calculateCalories();
+            proteins+=currentRecipe.calculateProtein();
+            fats+=currentRecipe.calculateFat();
+            carbs+=currentRecipe.calculateCarb();
         }
+        caloriesContainer.getChildren().addAll(new Label("Calories"),new Label("\n"+calories));
+        proteinContainer.getChildren().addAll(new Label("Proteins"),new Label("\n"+proteins));
+        fatsContainer.getChildren().addAll(new Label("Fats"),new Label("\n"+fats));
+        carbsContainer.getChildren().addAll(new Label("Carbs"),new Label("\n"+carbs));
     }
 }
