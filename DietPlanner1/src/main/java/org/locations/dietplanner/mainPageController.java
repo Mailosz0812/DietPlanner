@@ -184,6 +184,7 @@ public class mainPageController {
                     button.setStyle("-fx-background-color: #56A3A6; -fx-text-alignment: center; -fx-alignment: center; -fx-padding: 10px;");
                     lastClickedButton = button;
                     loadMeals(day);
+                    loadMacros(day);
                 });
 
             buttonContainer.getChildren().add(button);
