@@ -1,5 +1,9 @@
 package org.locations.dietplanner.Implementation;
 
+
+import java.util.Arrays;
+import java.util.List;
+
 public enum IngredientType {
     FRUIT,
     VEGETABLES,
@@ -17,5 +21,8 @@ public enum IngredientType {
             System.out.println("Incorrect ingredientType");
             return null;
         }
+    }
+    public static List<IngredientType> getTypes(){
+        return Arrays.asList(IngredientType.values());
     }
 }

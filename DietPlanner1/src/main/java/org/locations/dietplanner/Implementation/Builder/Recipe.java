@@ -6,6 +6,7 @@ import org.locations.dietplanner.Implementation.MealType;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 @JsonTypeName("org.locations.dietplanner.Implementation.Builder.Recipe")
 public class Recipe implements Serializable {
     private List<Ingredient> ingredientList;

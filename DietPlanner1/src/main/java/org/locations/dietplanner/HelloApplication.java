@@ -14,7 +14,8 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("index.fxml"));
         Scene scene = new Scene(fxmlLoader.load(),784,505 );
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
-        stage.setTitle("Test");
+
+        stage.setTitle("Diet App");
         stage.setScene(scene);
         stage.setMinWidth(scene.getWidth());
         stage.setMinHeight(scene.getHeight());

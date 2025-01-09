@@ -4,6 +4,8 @@ package org.locations.dietplanner;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.core.type.TypeReference;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -12,6 +14,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.locations.dietplanner.Implementation.Builder.Ingredient;
 import org.locations.dietplanner.Implementation.Builder.Recipe;
 import org.locations.dietplanner.Implementation.MealType;
@@ -23,6 +27,7 @@ import org.locations.dietplanner.Interfaces.ICommand;
 import org.locations.dietplanner.Interfaces.IMeal;
 import org.locations.dietplanner.Interfaces.IMealsGroup;
 
+import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -202,8 +207,7 @@ public class mainPageController {
         Button button = new Button("Add Meal");
         container.getChildren().add(button);
         button.setOnAction(actionEvent -> {
-            container.getChildren().clear();
-            container.getChildren().add(new Label("Meal added"));
+            openPopupHandler();
         });
     }
     private String formatMealInfo(IMeal meal) {
@@ -232,5 +236,21 @@ public class mainPageController {
         proteinContainer.getChildren().addAll(new Label("Proteins"),new Label("\n"+proteins));
         fatsContainer.getChildren().addAll(new Label("Fats"),new Label("\n"+fats));
         carbsContainer.getChildren().addAll(new Label("Carbs"),new Label("\n"+carbs));
+    }
+    private void openPopupHandler(){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("popup.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(),784,505 );
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Meal Form");
+            stage.setScene(scene);
+            stage.setMinWidth(scene.getWidth());
+            stage.setMinHeight(scene.getHeight());
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
