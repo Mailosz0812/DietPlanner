@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="787.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.locations.dietplanner.mainPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="787.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.locations.dietplanner.mainPageController">
     <children>
         <VBox fx:id="VBox_All" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -50,10 +50,10 @@
                         </AnchorPane>
                         <VBox fx:id="VBox_Content" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                             <children>
-                                <HBox fx:id="hbox_karuzela" alignment="CENTER" fillHeight="false" spacing="10.0">
+                                <HBox fx:id="HBox_Content_Top" alignment="CENTER" fillHeight="false" spacing="10.0">
                                     <children>
-                                        <Button fx:id="arrow_left" text="&lt;" />
-                                        <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" pannable="true" pickOnBounds="false" prefHeight="58.0" prefViewportWidth="600.0" vbarPolicy="NEVER">
+                                        <Button fx:id="HBox_Content_Top_Arrow_Left" mnemonicParsing="false" text="&lt;" HBox.hgrow="NEVER" />
+                                        <ScrollPane fx:id="HBox_Content_Top_ScrollPane" hbarPolicy="NEVER" pannable="true" pickOnBounds="false" prefHeight="58.0" prefViewportWidth="600.0" vbarPolicy="NEVER">
                                             <content>
                                                 <HBox fx:id="buttonContainer" alignment="CENTER" fillHeight="false" prefHeight="58.0" prefWidth="600.0" spacing="10.0">
                                                     <opaqueInsets>
@@ -65,13 +65,13 @@
                                                 <Insets />
                                             </HBox.margin>
                                         </ScrollPane>
-                                        <Button fx:id="arrow_right" text="&gt;" />
+                                        <Button fx:id="HBox_Content_Top_Arrow_Right" text="&gt;" />
                                     </children>
                                     <VBox.margin>
                                         <Insets />
                                     </VBox.margin>
                                 </HBox>
-                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0" VBox.vgrow="ALWAYS">
+                                <HBox fx:id="HBox_Content_Middle" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0" VBox.vgrow="ALWAYS">
                                     <children>
                                         <VBox prefHeight="200.0" prefWidth="100.0" spacing="15.0" HBox.hgrow="ALWAYS">
                                             <children>
@@ -144,7 +144,7 @@
 
                                     </children>
                                 </HBox>
-                                <HBox fx:id="HBoxFooter" alignment="CENTER" prefHeight="71.0" prefWidth="701.0" spacing="0">
+                                <HBox fx:id="HBox_Content_Footer" alignment="CENTER" prefHeight="71.0" prefWidth="701.0" spacing="0">
                                     <VBox fx:id="caloriesContainer" alignment="CENTER" HBox.hgrow="ALWAYS">
                                         <Label text="Sekcja 1" />
                                     </VBox>
