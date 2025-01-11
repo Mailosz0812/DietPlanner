@@ -2,6 +2,7 @@ package org.locations.dietplanner.Implementation.command;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.locations.dietplanner.Implementation.Builder.Recipe;
 import org.locations.dietplanner.Implementation.Builder.RecipeStorage;
 import org.locations.dietplanner.Interfaces.IMeal;
@@ -32,6 +33,7 @@ public class MemoryService {
     public <T> T importMealsFromJSON(String filename,TypeReference<T> type){
         try{
             T mealsList = objectMapper.readValue(new File(filename), type);
+            objectMapper.registerModule(new JavaTimeModule());
             return mealsList;
         }catch(IOException e){
             System.out.println(e.getMessage());

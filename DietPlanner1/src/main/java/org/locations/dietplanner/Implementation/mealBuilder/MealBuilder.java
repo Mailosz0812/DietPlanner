@@ -49,8 +49,8 @@ public class MealBuilder {
         }
         return this;
     }
-    public MealBuilder setDate(String date){
-        this.day = LocalDate.parse(date);
+    public MealBuilder setDate(LocalDate date){
+        this.day = date;
         return this;
     }
     public Meal build(){

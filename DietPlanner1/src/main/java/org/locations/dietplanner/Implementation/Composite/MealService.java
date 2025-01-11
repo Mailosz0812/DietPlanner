@@ -5,32 +5,71 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.locations.dietplanner.Implementation.Builder.Ingredient;
 import org.locations.dietplanner.Implementation.IngredientType;
+import org.locations.dietplanner.Implementation.mealBuilder.Meal;
 import org.locations.dietplanner.Interfaces.IMeal;
 import org.locations.dietplanner.Interfaces.IMealsGroup;
 
 import java.io.Serializable;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.temporal.TemporalAdjusters;
+import java.util.*;
 
 @JsonTypeName("MealService")
 public class MealService implements IMealsGroup, Serializable {
     @JsonProperty("MealsGroup")
     private List<IMealsGroup> MealsGroup;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
     @JsonCreator
-    public MealService(){
+    public MealService(@JsonProperty("startDate") String startDate,@JsonProperty("endDate")String endDate){
         this.MealsGroup = new ArrayList<>();
+        this.startDate = LocalDate.parse(startDate);
+        this.endDate = LocalDate.parse(endDate);
+    }
+    public MealService(LocalDate startDate,LocalDate endDate){
+        this.MealsGroup = new ArrayList<>();
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+    public void addMealGroup(IMealsGroup mealsGroup,LocalDate date){
+        if(isDateWithinRange(date, startDate, endDate)){
+            this.MealsGroup.add(mealsGroup);
+        }else{
+            MealService existingService = findExistingMealService(date);
+            if(existingService == null){
+                LocalDate weekStart = date.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+                LocalDate weekEnd = date.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
+                MealService newService = new MealService(weekStart, weekEnd);
+                newService.MealsGroup.add(mealsGroup);
+                this.MealsGroup.add(newService);
+            }else{
+                existingService.MealsGroup.add(mealsGroup);
+            }
+        }
+    }
 
+    private boolean isDateWithinRange(LocalDate date, LocalDate startDate, LocalDate endDate) {
+        return (date.isAfter(startDate) || date.isEqual(startDate)) && (date.isBefore(endDate) || date.isEqual(endDate));
     }
-    public void addMealGroup(IMealsGroup mealsGroup){
-        MealsGroup.add(mealsGroup);
-    }
+
     public void removeMealGroup(IMealsGroup mealsGroup){
         MealsGroup.remove(mealsGroup);
     }
+    private MealService findExistingMealService(LocalDate date) {
+        for (IMealsGroup group : MealsGroup) {
+            if (group instanceof MealService) {
+                MealService service = (MealService) group;
+                if (isDateWithinRange(date, service.startDate, service.endDate)) {
+                    return service;
+                }
+            }
+        }
+        return null;
+    }
+
+
     @Override
     public Double calculateCalories() {
         Double calories = 0.0;

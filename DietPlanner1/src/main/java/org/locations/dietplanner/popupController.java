@@ -8,14 +8,20 @@ import javafx.scene.control.*;
 import org.locations.dietplanner.Implementation.Builder.Ingredient;
 import org.locations.dietplanner.Implementation.Builder.Recipe;
 import org.locations.dietplanner.Implementation.Builder.RecipeBuilder;
+import org.locations.dietplanner.Implementation.Composite.MealService;
 import org.locations.dietplanner.Implementation.IngredientType;
+import org.locations.dietplanner.Implementation.MealType;
 import org.locations.dietplanner.Implementation.command.ImportToJSONCommand;
+import org.locations.dietplanner.Implementation.mealBuilder.Meal;
+import org.locations.dietplanner.Implementation.mealBuilder.MealBuilder;
 import org.locations.dietplanner.Interfaces.ICommand;
 import org.locations.dietplanner.Interfaces.IMealsGroup;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class popupController {
 
@@ -47,6 +53,9 @@ public class popupController {
     private TextField nameInput;
 
     @FXML
+    private ChoiceBox<MealType> mealTypeInput;
+
+    @FXML
     private TextField nameInputMeal;
 
     @FXML
@@ -56,25 +65,38 @@ public class popupController {
     private TextArea recipeText;
 
     @FXML
-    private TextField typeInput;
-
-    @FXML
     private ChoiceBox<IngredientType> typeView;
 
+    @FXML
+    private DatePicker datePicker;
+
+    private MealService mealsGroup;
     private ICommand command;
     private RecipeBuilder recipeBuilder;
     private ObservableList<Ingredient> ingredientObservableList;
     private List<Ingredient> ingredientList = new ArrayList<>();
+    private MealBuilder mealBuilder;
+    private LocalDate creationDate;
+    private Runnable onMealAddedCallback;
 
     @FXML
     public void initialize(){
+
         TypeReference<List<Recipe>> typeReference = new TypeReference<List<Recipe>>() {};
         command = new ImportToJSONCommand("recipes.json",typeReference);
-        recipeBuilder = new RecipeBuilder();
         List<Recipe> recipeList = (List<Recipe>) command.execute();
+
+        recipeBuilder = new RecipeBuilder();
+        mealBuilder = new MealBuilder(recipeBuilder);
+
         List<IngredientType> ingredientTypes = IngredientType.getTypes();
         ObservableList<IngredientType>  ingredientTypeObservableList = FXCollections.observableList(ingredientTypes);
         typeView.setItems(ingredientTypeObservableList);
+
+        List<MealType> mealTypeList = MealType.getEnumList();
+        ObservableList<MealType> mealTypeObservableList = FXCollections.observableList(mealTypeList);
+        mealTypeInput.setItems(mealTypeObservableList);
+
         for (Recipe recipe : recipeList) {
             System.out.println(recipe);
         }
@@ -82,6 +104,11 @@ public class popupController {
             errorLabel.setText("");
             errorLabel.setDisable(true);
             addIngredientHandler();
+        });
+        createButton.setOnAction(actionEvent -> {
+            mealConfigError.setText("");
+            mealConfigError.setDisable(true);
+            createMealHandler();
         });
     }
 
@@ -91,20 +118,20 @@ public class popupController {
         String fatsString = fatsInput.getText();
         String proteinsString = proteinsInput.getText();
         String carbsString = carbsInput.getText();
-        String ingredientType = typeView.getSelectionModel().getSelectedItem().toString();
-        if(ingredientType.isEmpty() || ingredientName.isEmpty() || caloriesString.isEmpty() ||
+        IngredientType ingredientType = typeView.getSelectionModel().getSelectedItem();
+        if(ingredientType == null|| ingredientName.isEmpty() || caloriesString.isEmpty() ||
                 fatsString.isEmpty() || proteinsString.isEmpty() || carbsString.isEmpty()){
             errorLabel.setText("parameter is missing");
             errorLabel.setDisable(false);
             return;
         }
         try {
+            String ingredientTypeString = ingredientType.toString();
             double calories = Double.parseDouble(caloriesString);
             double fats = Double.parseDouble(fatsString);
             double proteins = Double.parseDouble(proteinsString);
             double carbs = Double.parseDouble(carbsString);
-            Ingredient ingredient = new Ingredient(calories,fats,carbs,proteins,ingredientType,ingredientName);
-            recipeBuilder.addIngredient(ingredient);
+            Ingredient ingredient = new Ingredient(calories,fats,carbs,proteins,ingredientTypeString,ingredientName);
             ingredientList.add(ingredient);
             ingredientObservableList = FXCollections.observableList(ingredientList);
             mealView.setItems(ingredientObservableList);
@@ -112,8 +139,44 @@ public class popupController {
             errorLabel.setText("Incorrect format");
             errorLabel.setDisable(false);
         }
+    }
+
+    private void createMealHandler(){
+        String nameInput = nameInputMeal.getText();
+        MealType mealType = mealTypeInput.getSelectionModel().getSelectedItem();
+        String recipeInputText = recipeText.getText();
+        if(mealType == null || nameInput.isEmpty()) {
+            mealConfigError.setText("parameter is missing");
+            mealConfigError.setDisable(false);
+            return;
+        }
+        if(ingredientObservableList != null){
+            String mealTypeString = mealType.toString();
+            mealBuilder.addIngredients(ingredientList)
+                    .addMealType(mealTypeString)
+                    .addRecipeName(nameInput)
+                    .setDate(creationDate);
+            if(!recipeInputText.isEmpty()){
+                mealBuilder.addRecipeText(recipeInputText);
+            }
+            Meal meal = mealBuilder.build();
+            mealsGroup.addMealGroup(meal,meal.getDay());
+            if (onMealAddedCallback != null) {
+                onMealAddedCallback.run();
+            }
+        }
+
 
     }
 
+    public void setMealsGroup(MealService mealsGroup) {
+        this.mealsGroup = mealsGroup;
+    }
 
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
+    }
+    public void setOnMealAddedCallback(Runnable callback) {
+        this.onMealAddedCallback = callback;
+    }
 }

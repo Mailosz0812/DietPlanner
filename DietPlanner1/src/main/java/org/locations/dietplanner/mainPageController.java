@@ -1,7 +1,6 @@
 
 package org.locations.dietplanner;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.core.type.TypeReference;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +17,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.locations.dietplanner.Implementation.Builder.Ingredient;
 import org.locations.dietplanner.Implementation.Builder.Recipe;
+import org.locations.dietplanner.Implementation.Composite.MealService;
 import org.locations.dietplanner.Implementation.MealType;
 import org.locations.dietplanner.Implementation.command.ExportFromJSONCommand;
 import org.locations.dietplanner.Implementation.command.ImportToJSONCommand;
@@ -125,7 +125,8 @@ public class mainPageController {
 
     private Button lastClickedButton;
     private ICommand command;
-    private IMealsGroup mealsGroups;
+    private MealService mealsGroups;
+    private LocalDate creationDate;
 
     private final DateTimeFormatter dayFormatter = DateTimeFormatter.ofPattern("dd");
     private final DateTimeFormatter dayOfWeekFormatter = DateTimeFormatter.ofPattern("EEE",new Locale("en","EN"));
@@ -135,8 +136,7 @@ public class mainPageController {
     public void initialize() {
         TypeReference<IMealsGroup> typeReference = new TypeReference<IMealsGroup>() {};
         command = new ImportToJSONCommand("meals.json",typeReference);
-        mealsGroups = (IMealsGroup) command.execute();
-        System.out.println(mealsGroups.toStringGroups());
+        mealsGroups = (MealService) command.execute();
         buttonContainer.setStyle("-fx-background-color: #76C1C4");
         HBox_Content_Top_ScrollPane.setStyle("-fx-background-color: #76C1C4");
         final LocalDate[] currentDate = {LocalDate.now()};
@@ -147,7 +147,7 @@ public class mainPageController {
         mealsContainers.put(MealType.DESSERT, dessertAnchor);
         mealsContainers.put(MealType.SUPPER,supperAnchor);
         loadWeek(currentDate[0]);
-
+        creationDate = currentDate[0];
         HBox_Content_Top_Arrow_Left.setOnAction(event -> {
             System.out.println("W lewo");
             currentDate[0] = currentDate[0].minusWeeks(1);
@@ -164,7 +164,6 @@ public class mainPageController {
         LocalDate firstDayOfWeek = startDate.with(DayOfWeek.MONDAY);
         for (int i = 0; i < 7; i++) {
             LocalDate day = firstDayOfWeek.plusDays(i);
-            System.out.println(day);
             Button button = new Button();
             String text = day.format(dayFormatter) + "\n" + day.format(dayOfWeekFormatter);
             button.setText(text);
@@ -183,6 +182,7 @@ public class mainPageController {
                     lastClickedButton.setStyle("-fx-background-color: #76C1C4; -fx-text-alignment: center; -fx-alignment: center; -fx-padding: 10px;");
                     button.setStyle("-fx-background-color: #56A3A6; -fx-text-alignment: center; -fx-alignment: center; -fx-padding: 10px;");
                     lastClickedButton = button;
+                    creationDate = day;
                     loadMeals(day);
                     loadMacros(day);
                 });
@@ -213,7 +213,7 @@ public class mainPageController {
         AnchorPane.setTopAnchor(button, container.getHeight() / 2 - button.getHeight() / 2);
         AnchorPane.setLeftAnchor(button, container.getWidth() / 2 - button.getWidth() / 2);
         button.setOnAction(actionEvent -> {
-            openPopupHandler();
+            openPopupHandler(creationDate);
         });
         container.widthProperty().addListener((obs, oldVal, newVal) -> {
             AnchorPane.setLeftAnchor(button, newVal.doubleValue() / 2 - button.getWidth() / 2);
@@ -252,10 +252,18 @@ public class mainPageController {
         fatsContainer.getChildren().addAll(new Label("Fats"),new Label("\n"+fats));
         carbsContainer.getChildren().addAll(new Label("Carbs"),new Label("\n"+carbs));
     }
-    private void openPopupHandler(){
+    private void openPopupHandler(LocalDate date){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("popup.fxml"));
             Scene scene = new Scene(fxmlLoader.load(),784,505 );
+            popupController controller = fxmlLoader.getController();
+            controller.setMealsGroup(mealsGroups);
+            controller.setCreationDate(creationDate);
+
+            controller.setOnMealAddedCallback(() -> {
+                loadMeals(creationDate);
+                loadMacros(creationDate);
+            });
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Meal Form");
@@ -264,7 +272,7 @@ public class mainPageController {
             stage.setMinHeight(scene.getHeight());
             stage.show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
 
     }

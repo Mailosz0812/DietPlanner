@@ -3,6 +3,10 @@ package org.locations.dietplanner.Implementation;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public enum MealType {
     BREAKFAST,
     LUNCH,
@@ -21,5 +25,8 @@ public enum MealType {
     @JsonValue
     public String toJson() {
         return this.name().toLowerCase();
+    }
+    public static List<MealType> getEnumList(){
+        return Arrays.asList(MealType.values());
     }
 }

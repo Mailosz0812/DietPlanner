@@ -1,5 +1,7 @@
 {
   "@type": "MealService",
+  "startDate": "2025-01-07",
+  "endDate": "2025-01-13",
   "MealsGroup": [
     {
       "@type": "Meal",
@@ -57,10 +59,12 @@
     },
     {
       "@type": "MealService",
+      "startDate": "2025-01-14",
+      "endDate": "2025-01-21",
       "MealsGroup": [
         {
           "@type": "Meal",
-          "day": "2025-01-08",
+          "day": "2025-01-14",
           "recipe": {
             "name": "Oatmeal with Berries",
             "recipeText": "Cook oats in milk, top with fresh berries and honey.",
@@ -95,7 +99,7 @@
         },
         {
           "@type": "Meal",
-          "day": "2025-01-08",
+          "day": "2025-01-14",
           "recipe": {
             "name": "Vegetable Stir-Fry with Tofu",
             "recipeText": "Stir-fry tofu with mixed vegetables and soy sauce.",
