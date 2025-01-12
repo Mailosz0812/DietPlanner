@@ -1,5 +1,7 @@
 package org.locations.dietplanner.Implementation.mealBuilder;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.locations.dietplanner.Implementation.Builder.Ingredient;
 import org.locations.dietplanner.Implementation.Builder.Recipe;
@@ -14,6 +16,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "@type"
+)
 
 @JsonTypeName("Meal")
 public class Meal implements IMealsGroup, IMeal, Serializable {
@@ -47,6 +55,7 @@ public class Meal implements IMealsGroup, IMeal, Serializable {
         return recipe.calculateProtein();
     }
 
+    @JsonIgnore
     @Override
     public HashMap<IngredientType, List<Ingredient>> groupIngredients() {
         HashMap<IngredientType,List<Ingredient>> ingredientsSet = new HashMap<>();
@@ -81,14 +90,14 @@ public class Meal implements IMealsGroup, IMeal, Serializable {
     public LocalDate getDay() {
         return this.day;
     }
-
+    @JsonIgnore
     @Override
     public List<IMeal> getMeal() {
         List<IMeal> mealList = new ArrayList<>();
         mealList.add(this);
         return mealList;
     }
-
+    @JsonIgnore
     @Override
     public List<IMeal> getMealByDate(LocalDate date) {
         List<IMeal> mealList = new ArrayList<>();
@@ -97,7 +106,7 @@ public class Meal implements IMealsGroup, IMeal, Serializable {
         }
         return mealList;
     }
-
+    @JsonIgnore
     @Override
     public List<String> toStringGroups() {
         List<String> stringList = new ArrayList<>();
@@ -106,5 +115,10 @@ public class Meal implements IMealsGroup, IMeal, Serializable {
         string.append(this.day.toString());
         stringList.add(string.toString());
         return stringList;
+    }
+
+    @Override
+    public String toString() {
+        return this.recipe.toString();
     }
 }

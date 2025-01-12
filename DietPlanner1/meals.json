@@ -1,165 +1,33 @@
 {
-  "@type": "MealService",
-  "startDate": "2025-01-07",
-  "endDate": "2025-01-13",
-  "MealsGroup": [
-    {
-      "@type": "Meal",
-      "day": "2025-01-07",
-      "recipe": {
-        "name": "Scrambled Eggs with Spinach",
-        "recipeText": "Whisk eggs with milk, sauté spinach, and cook together until set.",
-        "mealType": "BREAKFAST",
-        "ingredientList": [
-          {
-            "name": "Eggs",
-            "type": "MEAT",
-            "calories": 155,
-            "fat": 11,
-            "carb": 1,
-            "protein": 13
-          }
-        ]
-      }
-    },
-    {
-      "@type": "Meal",
-      "day": "2025-01-07",
-      "recipe": {
-        "name": "Grilled Chicken Salad",
-        "recipeText": "Grill chicken breast and serve over a mix of fresh greens with olive oil dressing.",
-        "mealType": "LUNCH",
-        "ingredientList": [
-          {
-            "name": "Chicken Breast",
-            "type": "MEAT",
-            "calories": 165,
-            "fat": 3.6,
-            "carb": 0,
-            "protein": 31
-          },
-          {
-            "name": "Mixed Greens",
-            "type": "VEGETABLES",
-            "calories": 25,
-            "fat": 0,
-            "carb": 4,
-            "protein": 2
-          },
-          {
-            "name": "Olive Oil",
-            "type": "OTHER",
-            "calories": 119,
-            "fat": 14,
-            "carb": 0,
-            "protein": 0
-          }
-        ]
-      }
-    },
+  "@type": "listWrapper",
+  "mealServiceList": [
     {
       "@type": "MealService",
-      "startDate": "2025-01-14",
-      "endDate": "2025-01-21",
       "MealsGroup": [
         {
           "@type": "Meal",
-          "day": "2025-01-14",
+          "day": "2025-01-12",
           "recipe": {
-            "name": "Oatmeal with Berries",
-            "recipeText": "Cook oats in milk, top with fresh berries and honey.",
-            "mealType": "BREAKFAST",
+            "@type": "Recipe",
             "ingredientList": [
               {
-                "name": "Oats",
-                "type": "GRAIN",
-                "calories": 150,
-                "fat": 3,
-                "carb": 27,
-                "protein": 5
-              },
-              {
-                "name": "Berries",
-                "type": "FRUIT",
-                "calories": 50,
-                "fat": 0.5,
-                "carb": 12,
-                "protein": 1
-              },
-              {
-                "name": "Milk",
-                "type": "DAIRY",
-                "calories": 103,
-                "fat": 2.4,
-                "carb": 12,
-                "protein": 8
+                "@type": "Ingredient",
+                "calories": 2.0,
+                "carb": 2.0,
+                "fat": 2.0,
+                "name": "asda",
+                "protein": 2.0,
+                "type": "VEGETABLES"
               }
-            ]
-          }
-        },
-        {
-          "@type": "Meal",
-          "day": "2025-01-14",
-          "recipe": {
-            "name": "Vegetable Stir-Fry with Tofu",
-            "recipeText": "Stir-fry tofu with mixed vegetables and soy sauce.",
-            "mealType": "DINNER",
-            "ingredientList": [
-              {
-                "name": "Tofu",
-                "type": "OTHER",
-                "calories": 144,
-                "fat": 8,
-                "carb": 3,
-                "protein": 15
-              },
-              {
-                "name": "Mixed Vegetables",
-                "type": "VEGETABLES",
-                "calories": 80,
-                "fat": 1,
-                "carb": 16,
-                "protein": 3
-              },
-              {
-                "name": "Soy Sauce",
-                "type": "OTHER",
-                "calories": 10,
-                "fat": 0,
-                "carb": 1,
-                "protein": 1
-              }
-            ]
+            ],
+            "mealType": "dessert",
+            "name": "asd",
+            "recipeText": "\t"
           }
         }
-      ]
-    },
-    {
-      "@type": "Meal",
-      "day": "2025-01-09",
-      "recipe": {
-        "name": "Avocado Toast",
-        "recipeText": "Toast whole-grain bread and top with mashed avocado and a sprinkle of salt.",
-        "mealType": "BREAKFAST",
-        "ingredientList": [
-          {
-            "name": "Whole-Grain Bread",
-            "type": "GRAIN",
-            "calories": 120,
-            "fat": 1.5,
-            "carb": 22,
-            "protein": 4
-          },
-          {
-            "name": "Avocado",
-            "type": "VEGETABLES",
-            "calories": 160,
-            "fat": 15,
-            "carb": 9,
-            "protein": 2
-          }
-        ]
-      }
+      ],
+      "endDate": "2025-01-12",
+      "startDate": "2025-01-06"
     }
   ]
 }

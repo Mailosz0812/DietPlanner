@@ -1,7 +1,12 @@
+{
+  "@type": "RecipeStorage",
+  "recipeList":
 [
   {
+    "@type": "Recipe",
     "ingredientList": [
       {
+        "@type": "Ingredient",
         "name": "Egg",
         "type": "OTHER",
         "calories": 155,
@@ -10,6 +15,7 @@
         "carb": 1
       },
       {
+        "@type": "Ingredient",
         "name": "Butter",
         "type": "DAIRY",
         "calories": 102,
@@ -18,6 +24,7 @@
         "carb": 0
       },
       {
+        "@type": "Ingredient",
         "name": "Bread",
         "type": "GRAIN",
         "calories": 80,
@@ -31,8 +38,10 @@
     "name": "Fried Egg on Toast"
   },
   {
+    "@type": "Recipe",
     "ingredientList": [
       {
+        "@type": "Ingredient",
         "name": "Chicken Breast",
         "type": "MEAT",
         "calories": 165,
@@ -41,6 +50,7 @@
         "carb": 0
       },
       {
+        "@type": "Ingredient",
         "name": "Olive Oil",
         "type": "OTHER",
         "calories": 120,
@@ -49,6 +59,7 @@
         "carb": 0
       },
       {
+        "@type": "Ingredient",
         "name": "Garlic",
         "type": "VEGETABLES",
         "calories": 4,
@@ -62,8 +73,10 @@
     "name": "Garlic Chicken"
   },
   {
+    "@type": "Recipe",
     "ingredientList": [
       {
+        "@type": "Ingredient",
         "name": "Pasta",
         "type": "GRAIN",
         "calories": 200,
@@ -72,6 +85,7 @@
         "carb": 41
       },
       {
+        "@type": "Ingredient",
         "name": "Tomato Sauce",
         "type": "VEGETABLES",
         "calories": 50,
@@ -80,6 +94,7 @@
         "carb": 10
       },
       {
+        "@type": "Ingredient",
         "name": "Parmesan Cheese",
         "type": "DAIRY",
         "calories": 22,
@@ -93,8 +108,10 @@
     "name": "Pasta with Tomato Sauce"
   },
   {
+    "@type": "Recipe",
     "ingredientList": [
       {
+        "@type": "Ingredient",
         "name": "Milk",
         "type": "DAIRY",
         "calories": 42,
@@ -103,6 +120,7 @@
         "carb": 5
       },
       {
+        "@type": "Ingredient",
         "name": "Banana",
         "type": "FRUIT",
         "calories": 105,
@@ -111,6 +129,7 @@
         "carb": 27
       },
       {
+        "@type": "Ingredient",
         "name": "Peanut Butter",
         "type": "OTHER",
         "calories": 94,
@@ -124,8 +143,10 @@
     "name": "Banana Peanut Smoothie"
   },
   {
+    "@type": "Recipe",
     "ingredientList": [
       {
+        "@type": "Ingredient",
         "name": "Apple",
         "type": "FRUIT",
         "calories": 95,
@@ -134,6 +155,7 @@
         "carb": 25
       },
       {
+        "@type": "Ingredient",
         "name": "Cinnamon",
         "type": "OTHER",
         "calories": 6,
@@ -142,6 +164,7 @@
         "carb": 2
       },
       {
+        "@type": "Ingredient",
         "name": "Honey",
         "type": "OTHER",
         "calories": 64,
@@ -155,3 +178,5 @@
     "name": "Cinnamon Apple Snack"
   }
 ]
+}
+}

@@ -17,20 +17,19 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.locations.dietplanner.Implementation.Builder.Ingredient;
 import org.locations.dietplanner.Implementation.Builder.Recipe;
+import org.locations.dietplanner.Implementation.Builder.RecipeStorage;
 import org.locations.dietplanner.Implementation.Composite.MealService;
 import org.locations.dietplanner.Implementation.MealType;
-import org.locations.dietplanner.Implementation.command.ExportFromJSONCommand;
-import org.locations.dietplanner.Implementation.command.ImportToJSONCommand;
-import org.locations.dietplanner.Implementation.command.MemoryService;
-import org.locations.dietplanner.Implementation.mealBuilder.Meal;
-import org.locations.dietplanner.Interfaces.ICommand;
+import org.locations.dietplanner.Implementation.command.ExportToJSONCommand;
+import org.locations.dietplanner.Implementation.command.ImportFromJSONCommand;
+import org.locations.dietplanner.Implementation.command.MemoryCommandInvoker;
 import org.locations.dietplanner.Interfaces.IMeal;
-import org.locations.dietplanner.Interfaces.IMealsGroup;
 
 import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -123,10 +122,20 @@ public class mainPageController {
     @FXML
     private HBox supperContainer;
 
+    @FXML
+    private Button exportButton;
+
+    @FXML
+    private Button saveButton;
+
     private Button lastClickedButton;
-    private ICommand command;
-    private MealService mealsGroups;
+    private MemoryCommandInvoker invoker = new MemoryCommandInvoker();
+    private MemoryCommandInvoker storageInvoker = new MemoryCommandInvoker();
+    private List<MealService> mealsGroups;
     private LocalDate creationDate;
+    private mealListWrapper wrapper;
+    private RecipeStorage storage;
+
 
     private final DateTimeFormatter dayFormatter = DateTimeFormatter.ofPattern("dd");
     private final DateTimeFormatter dayOfWeekFormatter = DateTimeFormatter.ofPattern("EEE",new Locale("en","EN"));
@@ -134,27 +143,58 @@ public class mainPageController {
 
     @FXML
     public void initialize() {
-        TypeReference<IMealsGroup> typeReference = new TypeReference<IMealsGroup>() {};
-        command = new ImportToJSONCommand("meals.json",typeReference);
-        mealsGroups = (MealService) command.execute();
+        final LocalDate[] currentDate = {LocalDate.now()};
+
+
+        TypeReference<mealListWrapper> typeReference = new TypeReference<mealListWrapper>() {};
+        invoker.setCommand(new ImportFromJSONCommand<mealListWrapper>("meals.json", typeReference));
+        wrapper = invoker.executeCommand();
+
+        TypeReference<RecipeStorage> recipeStorageTypeReference = new TypeReference<RecipeStorage>() {};
+        storageInvoker.setCommand(new ImportFromJSONCommand<RecipeStorage>("recipes.json", recipeStorageTypeReference));
+        storage = storageInvoker.executeCommand();
+        if(wrapper == null){
+            mealsGroups = new ArrayList<>();
+            wrapper = new mealListWrapper(mealsGroups);
+        }else{
+            mealsGroups = wrapper.getMealServiceList();
+        }
+        if(storage == null){
+            storage = RecipeStorage.getInstance();
+        }
+        for(Recipe recipe: storage.getRecipeList()){
+            System.out.println(recipe);
+        }
         buttonContainer.setStyle("-fx-background-color: #76C1C4");
         HBox_Content_Top_ScrollPane.setStyle("-fx-background-color: #76C1C4");
-        final LocalDate[] currentDate = {LocalDate.now()};
+
         mealsContainers = new HashMap<>();
         mealsContainers.put(MealType.BREAKFAST, breakfastAnchor);
         mealsContainers.put(MealType.LUNCH, lunchAnchor);
         mealsContainers.put(MealType.DINNER, dinnerAnchor);
         mealsContainers.put(MealType.DESSERT, dessertAnchor);
         mealsContainers.put(MealType.SUPPER,supperAnchor);
+
         loadWeek(currentDate[0]);
         creationDate = currentDate[0];
+
+
+        //TOP toolbar buttons init
+        saveButton.setOnAction(actionEvent -> {
+//            for (MealService mealsGroup : mealsGroups) {
+//                System.out.println(mealsGroup.toStringGroups());
+//            }
+            invoker.setCommand(new ExportToJSONCommand<>("meals.json", wrapper));
+            invoker.executeCommand();
+        });
+
+
+
         HBox_Content_Top_Arrow_Left.setOnAction(event -> {
-            System.out.println("W lewo");
             currentDate[0] = currentDate[0].minusWeeks(1);
             loadWeek(currentDate[0]);
         });
         HBox_Content_Top_Arrow_Right.setOnAction(event -> {
-            System.out.println("W prawo");
             currentDate[0] = currentDate[0].plusWeeks(1);
             loadWeek(currentDate[0]);
         });
@@ -191,21 +231,23 @@ public class mainPageController {
         }
     }
     private void loadMeals(LocalDate currentDate){
-        List<IMeal> meals = mealsGroups.getMealByDate(currentDate);
-            mealsContainers.values().forEach(container -> container.getChildren().clear());
-            for (IMeal meal : meals) {
-                MealType mealType = meal.getRecipe().getMealType();
-                AnchorPane container = mealsContainers.get(mealType);
-                Label mealLabel = new Label(formatMealInfo(meal));
-                container.getChildren().add(mealLabel);
-            }
-            mealsContainers.values().forEach(container -> {
-                if(container.getChildren().isEmpty()){
-                    addingMealHandler(container);
+        mealsContainers.values().forEach(container -> container.getChildren().clear());
+        if(!mealsGroups.isEmpty()) {
+            for (MealService mealsGroup : mealsGroups) {
+                List<IMeal> meals = mealsGroup.getMealByDate(currentDate);
+                for (IMeal meal : meals) {
+                    MealType mealType = meal.getRecipe().getMealType();
+                    AnchorPane container = mealsContainers.get(mealType);
+                    Label mealLabel = new Label(formatMealInfo(meal));
+                    container.getChildren().add(mealLabel);
                 }
-            });
-
-
+            }
+        }
+        mealsContainers.values().forEach(container -> {
+            if (container.getChildren().isEmpty()) {
+                addingMealHandler(container);
+            }
+        });
     }
     private void addingMealHandler(AnchorPane container){
         Button button = new Button("Add Meal");
@@ -213,7 +255,7 @@ public class mainPageController {
         AnchorPane.setTopAnchor(button, container.getHeight() / 2 - button.getHeight() / 2);
         AnchorPane.setLeftAnchor(button, container.getWidth() / 2 - button.getWidth() / 2);
         button.setOnAction(actionEvent -> {
-            openPopupHandler(creationDate);
+            openPopupHandler();
         });
         container.widthProperty().addListener((obs, oldVal, newVal) -> {
             AnchorPane.setLeftAnchor(button, newVal.doubleValue() / 2 - button.getWidth() / 2);
@@ -228,31 +270,39 @@ public class mainPageController {
                 "Kalorie: " + meal.getRecipe().getIngredientList().stream().mapToDouble(Ingredient::getCalories).sum();
     }
     private void loadMacros(LocalDate day){
-        caloriesContainer.getChildren().clear();
-        proteinContainer.getChildren().clear();
-        fatsContainer.getChildren().clear();
-        carbsContainer.getChildren().clear();
-        List<IMeal> meals = mealsGroups.getMealByDate(day);
-
         double calories = 0;
         double proteins = 0;
         double fats = 0;
         double carbs = 0;
-        for (IMeal meal : meals) {
-            Recipe currentRecipe = meal.getRecipe();
-
-
-            calories+=currentRecipe.calculateCalories();
-            proteins+=currentRecipe.calculateProtein();
-            fats+=currentRecipe.calculateFat();
-            carbs+=currentRecipe.calculateCarb();
+        caloriesContainer.getChildren().clear();
+        proteinContainer.getChildren().clear();
+        fatsContainer.getChildren().clear();
+        carbsContainer.getChildren().clear();
+        if(!mealsGroups.isEmpty()) {
+            MealService mealServiceFittedToDate = null;
+            for (MealService mealsGroup : mealsGroups) {
+                if(mealsGroup.isDateWithinRange(day,mealsGroup.getStartDate(),mealsGroup.getEndDate())){
+                    mealServiceFittedToDate = mealsGroup;
+                    break;
+                }
+            }
+            if(mealServiceFittedToDate != null) {
+                List<IMeal> meals = mealServiceFittedToDate.getMealByDate(day);
+                for (IMeal meal : meals) {
+                    Recipe currentRecipe = meal.getRecipe();
+                    calories += currentRecipe.calculateCalories();
+                    proteins += currentRecipe.calculateProtein();
+                    fats += currentRecipe.calculateFat();
+                    carbs += currentRecipe.calculateCarb();
+                }
+            }
         }
-        caloriesContainer.getChildren().addAll(new Label("Calories"),new Label("\n"+calories));
-        proteinContainer.getChildren().addAll(new Label("Proteins"),new Label("\n"+proteins));
-        fatsContainer.getChildren().addAll(new Label("Fats"),new Label("\n"+fats));
-        carbsContainer.getChildren().addAll(new Label("Carbs"),new Label("\n"+carbs));
+        caloriesContainer.getChildren().addAll(new Label("Calories"), new Label("\n" + calories));
+        proteinContainer.getChildren().addAll(new Label("Proteins"), new Label("\n" + proteins));
+        fatsContainer.getChildren().addAll(new Label("Fats"), new Label("\n" + fats));
+        carbsContainer.getChildren().addAll(new Label("Carbs"), new Label("\n" + carbs));
     }
-    private void openPopupHandler(LocalDate date){
+    private void openPopupHandler(){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("popup.fxml"));
             Scene scene = new Scene(fxmlLoader.load(),784,505 );

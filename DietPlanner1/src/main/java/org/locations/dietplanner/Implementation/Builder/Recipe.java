@@ -1,13 +1,22 @@
 package org.locations.dietplanner.Implementation.Builder;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.locations.dietplanner.Implementation.MealType;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-@JsonTypeName("org.locations.dietplanner.Implementation.Builder.Recipe")
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME, // Use the class name as the type identifier
+        include = JsonTypeInfo.As.PROPERTY, // Include the type information as a property in the JSON
+        property = "@type" // This will hold the type information in the JSON
+)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Recipe.class, name = "Recipe") // Add other subclasses if needed
+})
+@JsonTypeName("Recipe")
 public class Recipe implements Serializable {
     private List<Ingredient> ingredientList;
     private String recipeText;

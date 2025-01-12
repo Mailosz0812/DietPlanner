@@ -1,9 +1,17 @@
 package org.locations.dietplanner.Implementation.Builder;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.locations.dietplanner.Implementation.IngredientType;
 
 import java.io.Serializable;
 
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "@type" // The type field in the JSON
+)
+@JsonTypeName("Ingredient")
 public class Ingredient implements Serializable {
     private Double calories;
     private Double fat;

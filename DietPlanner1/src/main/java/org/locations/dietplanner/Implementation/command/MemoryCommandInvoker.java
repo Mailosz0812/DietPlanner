@@ -5,12 +5,14 @@ import org.locations.dietplanner.Interfaces.ICommand;
 
 public class MemoryCommandInvoker {
     private ICommand<?> command;
-    private TypeReference<?> typeReference;
-    public MemoryCommandInvoker(ICommand command,TypeReference typeReference){
+    public MemoryCommandInvoker(){
+    }
+    public <T> T executeCommand() {
+        return (T) command.execute();
+    }
+
+    public void setCommand(ICommand<?> command) {
         this.command = command;
-        this.typeReference = typeReference;
     }
-    public <T> T executeCommand(ICommand<T> command) {
-        return command.execute();
-    }
+
 }

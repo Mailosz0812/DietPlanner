@@ -8,20 +8,20 @@ import javafx.scene.control.*;
 import org.locations.dietplanner.Implementation.Builder.Ingredient;
 import org.locations.dietplanner.Implementation.Builder.Recipe;
 import org.locations.dietplanner.Implementation.Builder.RecipeBuilder;
+import org.locations.dietplanner.Implementation.Builder.RecipeStorage;
 import org.locations.dietplanner.Implementation.Composite.MealService;
 import org.locations.dietplanner.Implementation.IngredientType;
 import org.locations.dietplanner.Implementation.MealType;
-import org.locations.dietplanner.Implementation.command.ImportToJSONCommand;
+import org.locations.dietplanner.Implementation.command.ImportFromJSONCommand;
 import org.locations.dietplanner.Implementation.mealBuilder.Meal;
 import org.locations.dietplanner.Implementation.mealBuilder.MealBuilder;
 import org.locations.dietplanner.Interfaces.ICommand;
-import org.locations.dietplanner.Interfaces.IMealsGroup;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 
 public class popupController {
 
@@ -70,7 +70,7 @@ public class popupController {
     @FXML
     private DatePicker datePicker;
 
-    private MealService mealsGroup;
+    private List<MealService> mealsGroup;
     private ICommand command;
     private RecipeBuilder recipeBuilder;
     private ObservableList<Ingredient> ingredientObservableList;
@@ -78,13 +78,10 @@ public class popupController {
     private MealBuilder mealBuilder;
     private LocalDate creationDate;
     private Runnable onMealAddedCallback;
+    private RecipeStorage recipeStorage;
 
     @FXML
     public void initialize(){
-
-        TypeReference<List<Recipe>> typeReference = new TypeReference<List<Recipe>>() {};
-        command = new ImportToJSONCommand("recipes.json",typeReference);
-        List<Recipe> recipeList = (List<Recipe>) command.execute();
 
         recipeBuilder = new RecipeBuilder();
         mealBuilder = new MealBuilder(recipeBuilder);
@@ -97,9 +94,6 @@ public class popupController {
         ObservableList<MealType> mealTypeObservableList = FXCollections.observableList(mealTypeList);
         mealTypeInput.setItems(mealTypeObservableList);
 
-        for (Recipe recipe : recipeList) {
-            System.out.println(recipe);
-        }
         addButton.setOnAction(actionEvent -> {
             errorLabel.setText("");
             errorLabel.setDisable(true);
@@ -160,8 +154,21 @@ public class popupController {
                 mealBuilder.addRecipeText(recipeInputText);
             }
             Meal meal = mealBuilder.build();
-            mealsGroup.addMealGroup(meal,meal.getDay());
-            if (onMealAddedCallback != null) {
+            boolean mealAdded = false;
+            for (MealService mealService : mealsGroup) {
+                if(mealService.addMealGroup(meal)){
+                    mealAdded = true;
+                    break;
+                }
+            }
+            if(!mealAdded){
+                LocalDate startDate = meal.getDay().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+                LocalDate endDate = meal.getDay().with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
+                MealService mealService = new MealService(startDate,endDate);
+                mealService.addMealGroup(meal);
+                mealsGroup.add(mealService);
+            }
+            if(onMealAddedCallback != null) {
                 onMealAddedCallback.run();
             }
         }
@@ -169,7 +176,7 @@ public class popupController {
 
     }
 
-    public void setMealsGroup(MealService mealsGroup) {
+    public void setMealsGroup(List<MealService> mealsGroup) {
         this.mealsGroup = mealsGroup;
     }
 
@@ -178,5 +185,9 @@ public class popupController {
     }
     public void setOnMealAddedCallback(Runnable callback) {
         this.onMealAddedCallback = callback;
+    }
+
+    public void setRecipeStorage(RecipeStorage recipeStorage) {
+        this.recipeStorage = recipeStorage;
     }
 }

@@ -1,8 +1,6 @@
 package org.locations.dietplanner.Implementation.Composite;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.*;
 import org.locations.dietplanner.Implementation.Builder.Ingredient;
 import org.locations.dietplanner.Implementation.IngredientType;
 import org.locations.dietplanner.Implementation.mealBuilder.Meal;
@@ -10,11 +8,14 @@ import org.locations.dietplanner.Interfaces.IMeal;
 import org.locations.dietplanner.Interfaces.IMealsGroup;
 
 import java.io.Serializable;
-import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.temporal.TemporalAdjusters;
 import java.util.*;
 
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "@type"
+)
 @JsonTypeName("MealService")
 public class MealService implements IMealsGroup, Serializable {
     @JsonProperty("MealsGroup")
@@ -22,51 +23,35 @@ public class MealService implements IMealsGroup, Serializable {
     private LocalDate startDate;
     private LocalDate endDate;
 
-    @JsonCreator
-    public MealService(@JsonProperty("startDate") String startDate,@JsonProperty("endDate")String endDate){
-        this.MealsGroup = new ArrayList<>();
-        this.startDate = LocalDate.parse(startDate);
-        this.endDate = LocalDate.parse(endDate);
+    public MealService(){
+
     }
     public MealService(LocalDate startDate,LocalDate endDate){
         this.MealsGroup = new ArrayList<>();
         this.startDate = startDate;
         this.endDate = endDate;
     }
-    public void addMealGroup(IMealsGroup mealsGroup,LocalDate date){
-        if(isDateWithinRange(date, startDate, endDate)){
+    public boolean addMealGroup(Meal mealsGroup){
+        if(isDateWithinRange(mealsGroup.getDay(), startDate, endDate)) {
             this.MealsGroup.add(mealsGroup);
-        }else{
-            MealService existingService = findExistingMealService(date);
-            if(existingService == null){
-                LocalDate weekStart = date.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
-                LocalDate weekEnd = date.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
-                MealService newService = new MealService(weekStart, weekEnd);
-                newService.MealsGroup.add(mealsGroup);
-                this.MealsGroup.add(newService);
-            }else{
-                existingService.MealsGroup.add(mealsGroup);
-            }
+            return true;
         }
+        return false;
     }
 
-    private boolean isDateWithinRange(LocalDate date, LocalDate startDate, LocalDate endDate) {
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public boolean isDateWithinRange(LocalDate date, LocalDate startDate, LocalDate endDate) {
         return (date.isAfter(startDate) || date.isEqual(startDate)) && (date.isBefore(endDate) || date.isEqual(endDate));
     }
-
     public void removeMealGroup(IMealsGroup mealsGroup){
         MealsGroup.remove(mealsGroup);
-    }
-    private MealService findExistingMealService(LocalDate date) {
-        for (IMealsGroup group : MealsGroup) {
-            if (group instanceof MealService) {
-                MealService service = (MealService) group;
-                if (isDateWithinRange(date, service.startDate, service.endDate)) {
-                    return service;
-                }
-            }
-        }
-        return null;
     }
 
 
@@ -120,8 +105,7 @@ public class MealService implements IMealsGroup, Serializable {
         }
         return groupedIngredients;
     }
-
-    @Override
+    @JsonIgnore
     public List<IMeal> getMeal() {
         List<IMeal> allMeals = new ArrayList<>();
         for (IMealsGroup iMealsGroup : MealsGroup) {
@@ -137,12 +121,12 @@ public class MealService implements IMealsGroup, Serializable {
         }
         return mealsByDate;
     }
-
     @Override
     public List<String> toStringGroups() {
         List<String> toStringGroups = new ArrayList<>();
         for (IMealsGroup iMealsGroup : MealsGroup) {
             toStringGroups.addAll(iMealsGroup.toStringGroups());
+            toStringGroups.add("\n");
         }
         return toStringGroups;
     }

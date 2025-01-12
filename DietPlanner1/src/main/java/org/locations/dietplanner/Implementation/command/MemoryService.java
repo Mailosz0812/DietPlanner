@@ -2,14 +2,11 @@ package org.locations.dietplanner.Implementation.command;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import org.locations.dietplanner.Implementation.Builder.Recipe;
-import org.locations.dietplanner.Implementation.Builder.RecipeStorage;
-import org.locations.dietplanner.Interfaces.IMeal;
-import org.locations.dietplanner.Interfaces.IMealsGroup;
+import org.locations.dietplanner.mealListWrapper;
 
 import java.io.*;
-import java.util.List;
 
 public class MemoryService {
 
@@ -23,18 +20,18 @@ public class MemoryService {
         }
         return service;
     }
-    public<T> void exportRecipeToJSON(String fileName, List<T> list){
+    public<T> void exportMealsToJSON(String fileName, T Object){
         try {
-            objectMapper.writeValue(new File(fileName), list);
+            objectMapper.writeValue (new File(fileName), Object);
         }catch(IOException e){
             System.out.println(e.getMessage());
         }
     }
     public <T> T importMealsFromJSON(String filename,TypeReference<T> type){
         try{
-            T mealsList = objectMapper.readValue(new File(filename), type);
+            objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
             objectMapper.registerModule(new JavaTimeModule());
-            return mealsList;
+            return objectMapper.readValue(new File(filename), type);
         }catch(IOException e){
             System.out.println(e.getMessage());
             return null;

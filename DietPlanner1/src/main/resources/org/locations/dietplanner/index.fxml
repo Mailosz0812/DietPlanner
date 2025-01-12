@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="787.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.locations.dietplanner.mainPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="787.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.locations.dietplanner.mainPageController">
     <children>
         <VBox fx:id="VBox_All" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -28,8 +28,8 @@
                         <ToolBar fx:id="ToolBar_Top" prefHeight="88.0" prefWidth="701.0" HBox.hgrow="ALWAYS">
                             <items>
                                 <Button fx:id="importButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Import" />
-                                <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Export" />
-                                <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Save" />
+                                <Button fx:id="exportButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Export" />
+                                <Button fx:id="saveButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Save" />
                                 <AmbientLight lightOn="true">
                                     <color>
                                         <Color red="0.27344992756843567" blue="1.0" />

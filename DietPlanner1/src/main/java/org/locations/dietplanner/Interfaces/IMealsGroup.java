@@ -13,7 +13,6 @@ import org.locations.dietplanner.Implementation.mealBuilder.Meal;
 
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
-        include = JsonTypeInfo.As.EXTERNAL_PROPERTY,
         property = "@type"
 )
 @JsonSubTypes({
