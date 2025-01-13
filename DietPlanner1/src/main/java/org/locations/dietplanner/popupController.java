@@ -1,6 +1,5 @@
 package org.locations.dietplanner;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,14 +11,10 @@ import org.locations.dietplanner.Implementation.Builder.RecipeStorage;
 import org.locations.dietplanner.Implementation.Composite.MealService;
 import org.locations.dietplanner.Implementation.IngredientType;
 import org.locations.dietplanner.Implementation.MealType;
-import org.locations.dietplanner.Implementation.command.ImportFromJSONCommand;
 import org.locations.dietplanner.Implementation.mealBuilder.Meal;
 import org.locations.dietplanner.Implementation.mealBuilder.MealBuilder;
-import org.locations.dietplanner.Interfaces.ICommand;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,10 +63,15 @@ public class popupController {
     private ChoiceBox<IngredientType> typeView;
 
     @FXML
-    private DatePicker datePicker;
+    private Button clearButton;
 
-    private List<MealService> mealsGroup;
-    private ICommand command;
+    @FXML
+    private ChoiceBox<Recipe> recipePicker;
+
+    @FXML
+    private Button removeButton;
+
+    private MealService mealService;
     private RecipeBuilder recipeBuilder;
     private ObservableList<Ingredient> ingredientObservableList;
     private List<Ingredient> ingredientList = new ArrayList<>();
@@ -85,6 +85,7 @@ public class popupController {
 
         recipeBuilder = new RecipeBuilder();
         mealBuilder = new MealBuilder(recipeBuilder);
+        recipeStorage = RecipeStorage.getInstance();
 
         List<IngredientType> ingredientTypes = IngredientType.getTypes();
         ObservableList<IngredientType>  ingredientTypeObservableList = FXCollections.observableList(ingredientTypes);
@@ -93,6 +94,20 @@ public class popupController {
         List<MealType> mealTypeList = MealType.getEnumList();
         ObservableList<MealType> mealTypeObservableList = FXCollections.observableList(mealTypeList);
         mealTypeInput.setItems(mealTypeObservableList);
+
+        ObservableList<Recipe> recipeObservableList = FXCollections.observableList(recipeStorage.getRecipeList());
+        recipePicker.setItems(recipeObservableList);
+        recipePicker.getSelectionModel().selectedItemProperty().addListener((observable , oldValue , newValue) -> {
+            loadRecipeContent(newValue);
+        });
+
+        mealView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        removeButton.setOnAction(actionEvent -> {
+            ObservableList<Ingredient> observableList = mealView.getSelectionModel().getSelectedItems();
+            if(observableList != null && !observableList.isEmpty()) {
+                ingredientObservableList.removeAll(observableList);
+            }
+        });
 
         addButton.setOnAction(actionEvent -> {
             errorLabel.setText("");
@@ -104,8 +119,26 @@ public class popupController {
             mealConfigError.setDisable(true);
             createMealHandler();
         });
-    }
+        clearButton.setOnAction(actionEvent -> {
+            nameInputMeal.clear();
+            mealTypeInput.setValue(null);
+            recipeText.clear();
+            recipePicker.setValue(null);
+            ingredientObservableList.clear();
+        });
 
+    }
+    private void loadRecipeContent(Recipe recipe){
+        if(recipe != null) {
+            System.out.println(recipe.getIngredientList());
+            nameInputMeal.setText(recipe.getName());
+            mealTypeInput.setValue(recipe.getMealType());
+            recipeText.setText(recipe.getRecipeText());
+            ingredientList = new ArrayList<>(recipe.getIngredientList());
+            ingredientObservableList = FXCollections.observableList(ingredientList);
+            mealView.setItems(ingredientObservableList);
+        }
+    }
     private void addIngredientHandler(){
         String ingredientName = nameInput.getText();
         String caloriesString = caloriesInput.getText();
@@ -154,40 +187,22 @@ public class popupController {
                 mealBuilder.addRecipeText(recipeInputText);
             }
             Meal meal = mealBuilder.build();
-            boolean mealAdded = false;
-            for (MealService mealService : mealsGroup) {
-                if(mealService.addMealGroup(meal)){
-                    mealAdded = true;
-                    break;
-                }
-            }
-            if(!mealAdded){
-                LocalDate startDate = meal.getDay().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
-                LocalDate endDate = meal.getDay().with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
-                MealService mealService = new MealService(startDate,endDate);
-                mealService.addMealGroup(meal);
-                mealsGroup.add(mealService);
-            }
+            mealService.addMealGroup(meal);
             if(onMealAddedCallback != null) {
                 onMealAddedCallback.run();
             }
         }
-
-
     }
 
-    public void setMealsGroup(List<MealService> mealsGroup) {
-        this.mealsGroup = mealsGroup;
+    public void setMealsGroup(MealService mealService) {
+        this.mealService = mealService;
     }
 
     public void setCreationDate(LocalDate creationDate) {
         this.creationDate = creationDate;
     }
+
     public void setOnMealAddedCallback(Runnable callback) {
         this.onMealAddedCallback = callback;
-    }
-
-    public void setRecipeStorage(RecipeStorage recipeStorage) {
-        this.recipeStorage = recipeStorage;
     }
 }

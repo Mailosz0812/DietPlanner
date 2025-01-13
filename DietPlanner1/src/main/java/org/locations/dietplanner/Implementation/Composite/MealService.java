@@ -8,7 +8,9 @@ import org.locations.dietplanner.Interfaces.IMeal;
 import org.locations.dietplanner.Interfaces.IMealsGroup;
 
 import java.io.Serializable;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.*;
 
 @JsonTypeInfo(
@@ -19,7 +21,7 @@ import java.util.*;
 @JsonTypeName("MealService")
 public class MealService implements IMealsGroup, Serializable {
     @JsonProperty("MealsGroup")
-    private List<IMealsGroup> MealsGroup;
+    private List<IMealsGroup> MealsGroup = new ArrayList<>();
     private LocalDate startDate;
     private LocalDate endDate;
 
@@ -27,18 +29,35 @@ public class MealService implements IMealsGroup, Serializable {
 
     }
     public MealService(LocalDate startDate,LocalDate endDate){
-        this.MealsGroup = new ArrayList<>();
         this.startDate = startDate;
         this.endDate = endDate;
     }
-    public boolean addMealGroup(Meal mealsGroup){
-        if(isDateWithinRange(mealsGroup.getDay(), startDate, endDate)) {
-            this.MealsGroup.add(mealsGroup);
-            return true;
-        }
-        return false;
+    public void addMealGroup(Meal mealsGroup){
+        this.MealsGroup.add(mealsGroup);
     }
 
+    public MealService getMealServiceByDate(LocalDate date){
+        LocalDate start = date.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+        LocalDate end = date.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
+        MealService service = null;
+        for (IMealsGroup mealsGroup : MealsGroup) {
+            if(mealsGroup instanceof MealService){
+                if(((MealService) mealsGroup).isDateWithinRange(date,((MealService) mealsGroup).startDate,((MealService) mealsGroup).endDate)){
+                    service = (MealService) mealsGroup;
+                    break;
+                }
+            }
+        }
+        if(service == null){
+            service = new MealService(start,end);
+            this.MealsGroup.add(service);
+        }
+        return service;
+    }
+
+    public void removeMealsGroup(IMealsGroup mealsGroup){
+        this.MealsGroup.remove(mealsGroup);
+    }
     public LocalDate getStartDate() {
         return startDate;
     }
@@ -50,10 +69,6 @@ public class MealService implements IMealsGroup, Serializable {
     public boolean isDateWithinRange(LocalDate date, LocalDate startDate, LocalDate endDate) {
         return (date.isAfter(startDate) || date.isEqual(startDate)) && (date.isBefore(endDate) || date.isEqual(endDate));
     }
-    public void removeMealGroup(IMealsGroup mealsGroup){
-        MealsGroup.remove(mealsGroup);
-    }
-
 
     @Override
     public Double calculateCalories() {

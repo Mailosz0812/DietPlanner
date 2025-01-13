@@ -1,7 +1,6 @@
 package org.locations.dietplanner.Implementation.command;
 
 import org.locations.dietplanner.Interfaces.ICommand;
-import org.locations.dietplanner.mealListWrapper;
 
 
 public class ExportToJSONCommand<T> implements ICommand<Void> {

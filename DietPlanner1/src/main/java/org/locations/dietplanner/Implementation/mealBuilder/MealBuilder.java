@@ -17,7 +17,6 @@ public class MealBuilder {
 
     public MealBuilder(RecipeBuilder builder){
         this.builder = builder;
-        storage = RecipeStorage.getInstance();
     }
 
     public MealBuilder addIngredients(List<Ingredient> ingredientList){
@@ -40,14 +39,6 @@ public class MealBuilder {
         this.builder.addRecipeName(name);
         return this;
 
-    }
-    public MealBuilder loadRecipeFromMemory(String name){
-        try{
-            this.recipe = storage.getRecipe(name);
-        }catch(NoSuchElementException e){
-            System.out.println(e.getMessage());
-        }
-        return this;
     }
     public MealBuilder setDate(LocalDate date){
         this.day = date;
