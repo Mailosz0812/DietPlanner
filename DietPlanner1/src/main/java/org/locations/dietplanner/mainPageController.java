@@ -127,6 +127,9 @@ public class mainPageController {
     @FXML
     private Button saveButton;
 
+    @FXML
+    private Button addMealButton;
+
     private Button lastClickedButton;
     private MemoryCommandInvoker invoker = new MemoryCommandInvoker();
     private MemoryCommandInvoker storageInvoker = new MemoryCommandInvoker();
@@ -180,7 +183,6 @@ public class mainPageController {
         });
 
 
-
         HBox_Content_Top_Arrow_Left.setOnAction(event -> {
             currentDate[0] = currentDate[0].minusWeeks(1);
             creationDate = currentDate[0];
@@ -191,6 +193,7 @@ public class mainPageController {
             creationDate = currentDate[0];
             loadWeek(currentDate[0]);
         });
+        addMealButton.setOnAction(actionEvent -> openPopupHandler(mainMealService.getMealServiceByDate(creationDate)));
     }
     private void loadWeek(LocalDate startDate){
         buttonContainer.getChildren().clear();
@@ -233,39 +236,20 @@ public class mainPageController {
                 AnchorPane container = mealsContainers.get(mealType);
                 Label mealLabel = new Label(formatMealInfo(meal));
                 Button removeButton = new Button("remove");
-                removeButton.setOnAction(actionEvent -> {
-                    removingMealHandler(container,meal,meals);
-                });
+                removeButton.setOnAction(actionEvent -> removingMealHandler(container,mealType));
                 container.getChildren().addAll(mealLabel,removeButton);
             }
         }
-        mealsContainers.values().forEach(container -> {
-            if (container.getChildren().isEmpty()) {
-                addingMealHandler(container,mealService);
-            }
-        });
     }
-    private void addingMealHandler(AnchorPane container,MealService mealService){
-        Button button = new Button("Add Meal");
-        container.getChildren().add(button);
-        AnchorPane.setTopAnchor(button, container.getHeight() / 2 - button.getHeight() / 2);
-        AnchorPane.setLeftAnchor(button, container.getWidth() / 2 - button.getWidth() / 2);
-        button.setOnAction(actionEvent -> {
-            openPopupHandler(mealService);
-        });
-        container.widthProperty().addListener((obs, oldVal, newVal) -> {
-            AnchorPane.setLeftAnchor(button, newVal.doubleValue() / 2 - button.getWidth() / 2);
-        });
-        container.heightProperty().addListener((obs, oldVal, newVal) -> {
-            AnchorPane.setTopAnchor(button, newVal.doubleValue() / 2 - button.getHeight() / 2);
-        });
-    }
-    private void removingMealHandler(AnchorPane container,IMeal meal,List<IMeal> meals){
+    private void removingMealHandler(AnchorPane container,MealType mealType){
         MealService mealServiceByDate = mainMealService.getMealServiceByDate(creationDate);
-        mealServiceByDate.removeMealsGroup((IMealsGroup) meal);
-        meals.remove(meal);
+        List<IMeal> meals = mealServiceByDate.getMealByDate(creationDate);
+        for (IMeal meal : meals) {
+            if(meal.getRecipe().getMealType().equals(mealType)){
+                mealServiceByDate.removeMealsGroup((IMealsGroup) meal);
+            }
+        }
         container.getChildren().clear();
-        addingMealHandler(container, mealServiceByDate);
         loadMacros(creationDate);
     }
     private String formatMealInfo(IMeal meal) {

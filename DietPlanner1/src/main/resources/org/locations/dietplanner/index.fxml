@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.AmbientLight?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -12,7 +11,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="787.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.locations.dietplanner.mainPageController">
     <children>
@@ -30,11 +28,6 @@
                                 <Button fx:id="importButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Import" />
                                 <Button fx:id="exportButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Export" />
                                 <Button fx:id="saveButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Save" />
-                                <AmbientLight lightOn="true">
-                                    <color>
-                                        <Color red="0.27344992756843567" blue="1.0" />
-                                    </color>
-                                </AmbientLight>
                             </items>
                         </ToolBar>
                     </children>
@@ -43,9 +36,7 @@
                     <children>
                         <AnchorPane fx:id="AnchorPane_Left" prefHeight="419.0" prefWidth="86.0">
                             <children>
-                                <Label layoutX="26.0" layoutY="85.0" text="TEST" />
-                                <Label layoutX="26.0" layoutY="103.0" text="TEST" />
-                                <Label layoutX="26.0" layoutY="121.0" text="TEST" />
+                        <Button fx:id="addMealButton" layoutX="11.0" layoutY="27.0" mnemonicParsing="false" text="AddMeal" />
                             </children>
                         </AnchorPane>
                         <VBox fx:id="VBox_Content" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
