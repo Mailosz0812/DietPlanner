@@ -27,6 +27,7 @@ import org.locations.dietplanner.Interfaces.ICommand;
 import org.locations.dietplanner.Interfaces.IMeal;
 import org.locations.dietplanner.Interfaces.IMealsGroup;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -100,8 +101,6 @@ public class mainPageController {
     @FXML
     private VBox fatsContainer;
 
-    @FXML
-    private Button importButton;
 
     @FXML
     private ImageView logo;
@@ -129,6 +128,12 @@ public class mainPageController {
 
     @FXML
     private Button addMealButton;
+
+    @FXML
+    private Button addRecipeButton;
+
+    @FXML
+    private Button summaryButton;
 
     private Button lastClickedButton;
     private MemoryCommandInvoker invoker = new MemoryCommandInvoker();
@@ -181,6 +186,18 @@ public class mainPageController {
             storageInvoker.setCommand(new ExportToJSONCommand<>("recipes.json",storage));
             storageInvoker.executeCommand();
         });
+        exportButton.setOnAction(actionEvent -> {
+            StringBuilder builder = new StringBuilder();
+            builder.append("/C:\\Users\\Czarny\\Desktop\\");
+            builder.append("MealsExport");
+            builder.append(currentDate[0]);
+            builder.append(".json");
+            invoker.setCommand(new ExportToJSONCommand<>(builder.toString(),mainMealService));
+            invoker.executeCommand();
+            builder.replace(builder.indexOf("M"),builder.lastIndexOf("t")+1,"RecipeExport");
+            storageInvoker.setCommand(new ExportToJSONCommand<>(builder.toString(),storage));
+            storageInvoker.executeCommand();
+        });
 
 
         HBox_Content_Top_Arrow_Left.setOnAction(event -> {
@@ -194,6 +211,10 @@ public class mainPageController {
             loadWeek(currentDate[0]);
         });
         addMealButton.setOnAction(actionEvent -> openPopupHandler(mainMealService.getMealServiceByDate(creationDate)));
+        addRecipeButton.setOnAction(actionEvent -> openPopupRecipeHandler());
+        summaryButton.setOnAction(actionEvent -> {
+            openPopupSummaryHandler();
+        });
     }
     private void loadWeek(LocalDate startDate){
         buttonContainer.getChildren().clear();
@@ -301,6 +322,42 @@ public class mainPageController {
             stage.setMinHeight(scene.getHeight());
             stage.show();
         } catch (IOException e) {
+            System.out.println("cos sie stalo"+e.getMessage());
+        }
+    }
+    private void openPopupRecipeHandler(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("recipePopup.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 784, 505);
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Recipe Form");
+            stage.setScene(scene);
+            stage.setMinWidth(scene.getWidth());
+            stage.setMinHeight(scene.getHeight());
+            stage.show();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    private void openPopupSummaryHandler(){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("summaryPopup.fxml"));
+            fxmlLoader.setControllerFactory(param -> {
+                summaryPopupController controller = new summaryPopupController();
+                controller.setService(mainMealService.getMealServiceByDate(creationDate));
+                return controller;
+            });
+            Scene scene = new Scene(fxmlLoader.load(),784,505);
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Week Summary");
+            stage.setScene(scene);
+            stage.setMinWidth(scene.getWidth());
+            stage.setMinHeight(scene.getHeight());
+            stage.show();
+
+        }catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }

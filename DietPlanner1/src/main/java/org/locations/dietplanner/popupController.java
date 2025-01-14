@@ -183,6 +183,8 @@ public class popupController {
                     .addMealType(mealTypeString)
                     .addRecipeName(nameInput)
                     .setDate(creationDate);
+            ingredientList.clear();
+            ingredientObservableList.clear();
             if(!recipeInputText.isEmpty()){
                 mealBuilder.addRecipeText(recipeInputText);
             }
