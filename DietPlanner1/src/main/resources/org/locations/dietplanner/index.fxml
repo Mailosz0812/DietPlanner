@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="787.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.locations.dietplanner.mainPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="787.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.locations.dietplanner.mainPageController">
     <children>
         <VBox fx:id="VBox_All" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -20,7 +20,7 @@
                     <children>
                         <ImageView fx:id="logo" fitHeight="86.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                             <image>
-                                <Image url="@logo.jpg" />
+                                <Image url="@logo.png" />
                             </image>
                         </ImageView>
                         <ToolBar fx:id="ToolBar_Top" prefHeight="88.0" prefWidth="701.0" HBox.hgrow="ALWAYS">
