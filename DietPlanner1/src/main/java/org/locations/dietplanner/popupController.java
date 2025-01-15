@@ -36,7 +36,7 @@ public class popupController {
     private Label errorLabel;
 
     @FXML
-    private TextField fatsInput;
+    private TextField fatInput;
 
     @FXML
     private Label mealConfigError;
@@ -142,7 +142,7 @@ public class popupController {
     private void addIngredientHandler(){
         String ingredientName = nameInput.getText();
         String caloriesString = caloriesInput.getText();
-        String fatsString = fatsInput.getText();
+        String fatsString = fatInput.getText();
         String proteinsString = proteinsInput.getText();
         String carbsString = carbsInput.getText();
         IngredientType ingredientType = typeView.getSelectionModel().getSelectedItem();

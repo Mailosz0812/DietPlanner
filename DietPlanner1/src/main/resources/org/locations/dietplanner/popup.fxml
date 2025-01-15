@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="494.0" prefWidth="747.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.locations.dietplanner.popupController">
+<AnchorPane fx:id="mainAnchorPopUp" prefHeight="494.0" prefWidth="747.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.locations.dietplanner.popupController">
    <AnchorPane layoutX="14.0" layoutY="25.0" prefHeight="454.0" prefWidth="194.0">
       <VBox layoutY="35.0" prefHeight="327.0" prefWidth="130.0" spacing="10.0">
          <Label text="Name" />
