@@ -261,7 +261,7 @@ public class mainPageController {
                 vbox.setPadding(new Insets(10, 10, 10, 10));
 
                 Label mealLabel = new Label(formatMealInfo(meal));
-                Button removeButton = new Button("remove");
+                Button removeButton = new Button("Remove");
                 removeButton.setOnAction(actionEvent -> removingMealHandler(container, mealType));
 
                 vbox.getChildren().addAll(mealLabel, removeButton);
@@ -307,19 +307,19 @@ public class mainPageController {
             }
         }
         Label caloriesLabel = new Label("Calories");
-        Label caloriesValueLabel = new Label("" + calories + "kcal");
+        Label caloriesValueLabel = new Label("" + calories + " kcal");
         caloriesLabel.setStyle("-fx-font-weight: bold;");
 
         Label proteinLabel = new Label("Proteins");
-        Label proteinValueLabel = new Label("" + proteins + "g");
+        Label proteinValueLabel = new Label("" + proteins + " g");
         proteinLabel.setStyle("-fx-font-weight: bold;");
 
         Label fatsLabel = new Label("Fat");
-        Label fatsValueLabel = new Label("" + fats + "g");
+        Label fatsValueLabel = new Label("" + fats + " g");
         fatsLabel.setStyle("-fx-font-weight: bold;");
 
         Label carbsLabel = new Label("Carbs");
-        Label carbsValueLabel = new Label("" + carbs + "g");
+        Label carbsValueLabel = new Label("" + carbs + " g");
         carbsLabel.setStyle("-fx-font-weight: bold;");
 
         caloriesContainer.getChildren().addAll(caloriesLabel, caloriesValueLabel);
@@ -330,7 +330,7 @@ public class mainPageController {
     private void openPopupHandler(MealService mealService){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("popup.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(),784,505 );
+            Scene scene = new Scene(fxmlLoader.load(),917,597 );
             scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
             popupController controller = fxmlLoader.getController();
             controller.setMealsGroup(mealService);
@@ -343,6 +343,11 @@ public class mainPageController {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Meal Form");
             stage.setScene(scene);
+            stage.setMinWidth(917);
+            stage.setMinHeight(597);
+            stage.setMaxWidth(917);
+            stage.setMaxHeight(597);
+            stage.setResizable(false);
             stage.setMinWidth(scene.getWidth());
             stage.setMinHeight(scene.getHeight());
             stage.show();
