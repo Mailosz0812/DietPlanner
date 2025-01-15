@@ -16,36 +16,36 @@
          <TextField fx:id="nameInput" />
          <Label text="Calories" />
          <TextField fx:id="caloriesInput" />
-         <Label text="Fats" />
-         <TextField fx:id="fatsInput" />
+         <Label text="Fat" />
+         <TextField fx:id="fatInput" />
          <Label text="Proteins" />
          <TextField fx:id="proteinsInput" />
          <Label text="Carbs" />
          <TextField fx:id="carbsInput" />
          <Label text="Type" />
       </VBox>
-      <Label layoutX="42.0" layoutY="5.0" text="Add Infredient" />
       <ChoiceBox fx:id="typeView" layoutY="375.0" prefHeight="25.0" prefWidth="130.0" />
       <Button fx:id="addButton" layoutX="130.0" layoutY="415.0" mnemonicParsing="false" text="Add " />
       <Label fx:id="errorLabel" disable="true" layoutX="7.0" layoutY="419.0" />
    </AnchorPane>
    <AnchorPane layoutX="232.0" layoutY="51.0" prefHeight="429.0" prefWidth="283.0">
-      <Label layoutX="124.0" layoutY="14.0" text="Meal config" />
       <TextField fx:id="nameInputMeal" layoutX="10.0" layoutY="49.0" />
-      <Label layoutX="20.0" layoutY="31.0" text="Nazwa" />
-      <Label layoutX="12.0" layoutY="85.0" text="Typ" />
-      <Label layoutX="9.0" layoutY="154.0" text="Recipe text" />
+      <Label layoutX="9.0" layoutY="31.0" text="Name" />
+      <Label layoutX="8.0" layoutY="85.0" text="Type" />
+      <Label layoutX="9.0" layoutY="154.0" text="Recipe description" />
       <TextArea fx:id="recipeText" layoutX="10.0" layoutY="171.0" prefHeight="122.0" prefWidth="149.0" />
       <Button fx:id="createButton" layoutX="187.0" layoutY="378.0" mnemonicParsing="false" text="Create" />
       <Label fx:id="mealConfigError" layoutX="21.0" layoutY="390.0" prefHeight="17.0" prefWidth="0.0" />
       <ChoiceBox fx:id="mealTypeInput" layoutX="8.0" layoutY="115.0" prefHeight="26.0" prefWidth="130.0" />
       <ChoiceBox fx:id="recipePicker" layoutX="8.0" layoutY="318.0" prefHeight="26.0" prefWidth="130.0" />
-      <Label layoutX="6.0" layoutY="297.0" text="Load Recipe" />
-      <Button fx:id="clearButton" layoutX="156.0" layoutY="319.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="51.0" text="Clear" />
+      <Label layoutX="14.0" layoutY="293.0" text="Load Recipe" />
+      <Button fx:id="clearButton" layoutX="156.0" layoutY="319.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="Clear" />
    </AnchorPane>
    <AnchorPane layoutX="480.0" layoutY="49.0" prefHeight="382.0" prefWidth="261.0">
       <Label layoutX="104.0" layoutY="5.0" text="Meal view" />
       <ListView fx:id="mealView" layoutX="19.0" layoutY="31.0" prefHeight="351.0" prefWidth="222.0" />
    </AnchorPane>
    <Button fx:id="removeButton" layoutX="653.0" layoutY="447.0" mnemonicParsing="false" text="Remove" />
+   <Label fx:id="addIngredientLabel" layoutX="14.0" layoutY="6.0" text="Add Ingredient" />
+   <Label fx:id="mealConfigLabel" layoutX="232.0" layoutY="6.0" text="Meal config" />
 </AnchorPane>
