@@ -30,17 +30,17 @@
                               </ImageView>
                         <Button fx:id="addMealButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Add Meal">
                            <VBox.margin>
-                              <Insets left="10.0" top="10.0" />
+                              <Insets left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
                         </Button>
                         <Button fx:id="addRecipeButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Recipies">
                            <VBox.margin>
-                              <Insets left="10.0" top="10.0" />
+                              <Insets left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
                         </Button>
                         <Button fx:id="summaryButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Summary">
                            <VBox.margin>
-                              <Insets left="10.0" top="10.0" />
+                              <Insets left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
                         </Button>
                      </children>

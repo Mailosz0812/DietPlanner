@@ -48,8 +48,8 @@
    </AnchorPane>
    <Button fx:id="removeButton" layoutX="693.0" layoutY="517.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="123.0" text="Remove" />
    <Label fx:id="addIngredientLabel" layoutX="66.0" layoutY="47.0" text="Add Ingredient" />
-   <Label fx:id="mealConfigLabel" layoutX="393.0" layoutY="47.0" text="Meal config" />
+   <Label fx:id="mealConfigLabel" layoutX="393.0" layoutY="47.0" text="Meal Config" />
    <Button fx:id="createButton" layoutX="393.0" layoutY="517.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="130.0" text="Create" />
    <Button fx:id="addButton" layoutX="77.0" layoutY="517.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="130.0" text="Add " />
-   <Label fx:id="mealViewLabel" layoutX="705.0" layoutY="47.0" text="Meal view" />
+   <Label fx:id="mealViewLabel" layoutX="705.0" layoutY="47.0" text="Meal View" />
 </AnchorPane>

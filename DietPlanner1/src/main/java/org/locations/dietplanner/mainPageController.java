@@ -261,6 +261,8 @@ public class mainPageController {
                 vbox.setPadding(new Insets(10, 10, 10, 10));
 
                 Label mealLabel = new Label(formatMealInfo(meal));
+                mealLabel.setWrapText(true);
+                mealLabel.setMaxWidth(500);
                 Button removeButton = new Button("Remove");
                 removeButton.setOnAction(actionEvent -> removingMealHandler(container, mealType));
 
