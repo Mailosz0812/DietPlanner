@@ -165,8 +165,8 @@ public class mainPageController {
         if(storage == null){
             storage = RecipeStorage.getInstance();
         }
-        buttonContainer.setStyle("-fx-background-color: #76C1C4");
-        HBox_Content_Top_ScrollPane.setStyle("-fx-background-color: #76C1C4");
+        buttonContainer.setStyle("-fx-background-color: #44e38d");
+        HBox_Content_Top_ScrollPane.setStyle("-fx-background-color: #44e38d");
 
         mealsContainers = new HashMap<>();
         mealsContainers.put(MealType.BREAKFAST, breakfastAnchor);
@@ -226,18 +226,18 @@ public class mainPageController {
             button.setText(text);
             if(day.equals(startDate)){
                 lastClickedButton = button;
-                button.setStyle("-fx-background-color: #56A3A6; -fx-text-alignment: center; -fx-alignment: center; -fx-padding: 10px;");
+                button.setStyle("-fx-background-color: #f2d457; -fx-text-alignment: center; -fx-alignment: center; -fx-padding: 10px;");
                 loadMeals(startDate);
                 loadMacros(startDate);
             }
             else {
-                button.setStyle("-fx-background-color: #76C1C4;-fx-text-alignment: center; -fx-alignment: center;-fx-padding: 10px;");
+                button.setStyle("-fx-background-color: #44e38d;-fx-text-alignment: center; -fx-alignment: center;-fx-padding: 10px;");
                 button.setMinWidth(50.0);
                 button.setMinHeight(50.0);
             }
                 button.setOnAction(actionEvent -> {
-                    lastClickedButton.setStyle("-fx-background-color: #76C1C4; -fx-text-alignment: center; -fx-alignment: center; -fx-padding: 10px;");
-                    button.setStyle("-fx-background-color: #56A3A6; -fx-text-alignment: center; -fx-alignment: center; -fx-padding: 10px;");
+                    lastClickedButton.setStyle("-fx-background-color: #44e38d; -fx-text-alignment: center; -fx-alignment: center; -fx-padding: 10px;");
+                    button.setStyle("-fx-background-color: #f2d457; -fx-text-alignment: center; -fx-alignment: center; -fx-padding: 10px;");
                     lastClickedButton = button;
                     creationDate = day;
                     loadMeals(day);

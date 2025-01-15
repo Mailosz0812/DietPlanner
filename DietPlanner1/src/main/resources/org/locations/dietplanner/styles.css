@@ -20,30 +20,31 @@
     -fx-padding: 5;
 }
 
-#VBox_All,
-#ToolBar_Top{
-    -fx-background-color: #9fc7b8;
+#logo,
+#AnchorPane_Left{
+    -fx-background-color: #f2d457;
 }
 
-#logo{
-    -fx-border-radius: 20px;
+#ToolBar_Top{
+    -fx-background-color: #ebebeb;
 }
 
 #VBox_Content{
-    -fx-background-color: #76C1C4;
+    -fx-background-color: #ebebeb;
+}
+#HBox_Content_Top{
+    -fx-background-color: #44e38d;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 5);
+}
+#HBox_Content_Footer{
+    -fx-background-color: #44e38d;
 }
 
 #HBox_Content_Top_Arrow_Right,
 #HBox_Content_Top_Arrow_Left{
-    -fx-background-color: #76C1C4;
+    -fx-background-color: #44e38d;
     -fx-font-size: 30;
     -fx-font-weight: bold;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);
-}
-
-#HBox_Content_Top_Arrow_Right:hover,
-#HBox_Content_Top_Arrow_Left:hover{
-    -fx-background-color: #56A3A6;
 }
 
 #breakfastAnchor,
