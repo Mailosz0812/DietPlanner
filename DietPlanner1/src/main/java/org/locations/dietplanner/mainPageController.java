@@ -307,6 +307,7 @@ public class mainPageController {
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("popup.fxml"));
             Scene scene = new Scene(fxmlLoader.load(),784,505 );
+            scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
             popupController controller = fxmlLoader.getController();
             controller.setMealsGroup(mealService);
             controller.setCreationDate(creationDate);
@@ -330,6 +331,7 @@ public class mainPageController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("recipePopup.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 784, 505);
             Stage stage = new Stage();
+            scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Recipe Form");
             stage.setScene(scene);
@@ -352,6 +354,7 @@ public class mainPageController {
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Week Summary");
+            scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
             stage.setScene(scene);
             stage.setMinWidth(scene.getWidth());
             stage.setMinHeight(scene.getHeight());

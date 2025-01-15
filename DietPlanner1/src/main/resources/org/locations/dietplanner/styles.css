@@ -59,3 +59,40 @@
     -fx-border-width: 1;
 }
 
+#nameInput,
+#caloriesInput,
+#proteinsInput,
+#carbsInput,
+#fatInput,
+#nameInputMeal,
+#recipeText,
+#mealView,
+#typeView,
+#mealTypeInput,
+#recipePicker{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: lightgray;
+    -fx-border-width: 1;
+}
+
+#addIngredientLabel
+{
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-background-color: #F2D457FF;
+    -fx-background-radius: 8;
+    -fx-padding: 5;
+}
+
+#mealConfigLabel{
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-background-color: #44E38DFF;
+    -fx-background-radius: 8;
+    -fx-padding: 5;
+}
+
+
