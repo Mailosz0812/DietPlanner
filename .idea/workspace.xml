@@ -30,7 +30,7 @@
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/Mailosz0812/DietPlanner.git",
-    "accountId": "3ac41788-bd15-4837-994f-08759b92ca39"
+    "accountId": "c7cc050c-2846-418d-9187-e8bf9f0456e0"
   }
 }]]></component>
   <component name="MavenImportPreferences">
@@ -81,8 +81,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193" />
-        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-IU-243.21565.193" />
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
       </set>
     </attachedChunks>
   </component>
@@ -107,6 +107,7 @@
       <workItem from="1736282779561" duration="11000" />
       <workItem from="1736286238174" duration="14000" />
       <workItem from="1736458189194" duration="14000" />
+      <workItem from="1736971989728" duration="6000" />
     </task>
     <servers />
   </component>

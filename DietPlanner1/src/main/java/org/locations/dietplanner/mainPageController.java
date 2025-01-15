@@ -306,10 +306,26 @@ public class mainPageController {
                 carbs += currentRecipe.calculateCarb();
             }
         }
-        caloriesContainer.getChildren().addAll(new Label("Calories"), new Label("\n" + calories));
-        proteinContainer.getChildren().addAll(new Label("Proteins"), new Label("\n" + proteins));
-        fatsContainer.getChildren().addAll(new Label("Fats"), new Label("\n" + fats));
-        carbsContainer.getChildren().addAll(new Label("Carbs"), new Label("\n" + carbs));
+        Label caloriesLabel = new Label("Calories");
+        Label caloriesValueLabel = new Label("" + calories + "kcal");
+        caloriesLabel.setStyle("-fx-font-weight: bold;");
+
+        Label proteinLabel = new Label("Proteins");
+        Label proteinValueLabel = new Label("" + proteins + "g");
+        proteinLabel.setStyle("-fx-font-weight: bold;");
+
+        Label fatsLabel = new Label("Fat");
+        Label fatsValueLabel = new Label("" + fats + "g");
+        fatsLabel.setStyle("-fx-font-weight: bold;");
+
+        Label carbsLabel = new Label("Carbs");
+        Label carbsValueLabel = new Label("" + carbs + "g");
+        carbsLabel.setStyle("-fx-font-weight: bold;");
+
+        caloriesContainer.getChildren().addAll(caloriesLabel, caloriesValueLabel);
+        proteinContainer.getChildren().addAll(proteinLabel, proteinValueLabel);
+        fatsContainer.getChildren().addAll(fatsLabel, fatsValueLabel);
+        carbsContainer.getChildren().addAll(carbsLabel, carbsValueLabel);
     }
     private void openPopupHandler(MealService mealService){
         try{
