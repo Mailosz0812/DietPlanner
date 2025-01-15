@@ -4,6 +4,7 @@ package org.locations.dietplanner;
 import com.fasterxml.jackson.core.type.TypeReference;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -255,11 +256,18 @@ public class mainPageController {
             for (IMeal meal : meals) {
                 MealType mealType = meal.getRecipe().getMealType();
                 AnchorPane container = mealsContainers.get(mealType);
+
+                VBox vbox = new VBox(10);
+                vbox.setPadding(new Insets(10, 10, 10, 10));
+
                 Label mealLabel = new Label(formatMealInfo(meal));
                 Button removeButton = new Button("remove");
-                removeButton.setOnAction(actionEvent -> removingMealHandler(container,mealType));
-                container.getChildren().addAll(mealLabel,removeButton);
+                removeButton.setOnAction(actionEvent -> removingMealHandler(container, mealType));
+
+                vbox.getChildren().addAll(mealLabel, removeButton);
+                container.getChildren().add(vbox);
             }
+
         }
     }
     private void removingMealHandler(AnchorPane container,MealType mealType){
