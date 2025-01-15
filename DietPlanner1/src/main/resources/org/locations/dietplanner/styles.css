@@ -137,3 +137,12 @@
     -fx-background-color: #C0392BFF;
 }
 
+#mealViewLabel{
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-background-color: #EBEBEBFF;
+    -fx-background-radius: 8;
+    -fx-padding: 5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0, 0, 0);
+}
+

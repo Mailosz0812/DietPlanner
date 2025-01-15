@@ -47,7 +47,7 @@
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                      <children>
-                              <ToolBar fx:id="ToolBar_Top" prefHeight="180.0">
+                              <ToolBar fx:id="ToolBar_Top" maxHeight="70.0" minHeight="70.0" prefHeight="70.0">
                                   <items>
                                       <Button fx:id="exportButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" text="Export" />
                                       <Button fx:id="saveButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" text="Save">
