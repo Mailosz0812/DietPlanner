@@ -18,24 +18,27 @@
             <children>
                 <HBox fx:id="HBox_Top" prefHeight="516.0" prefWidth="787.0" VBox.vgrow="ALWAYS">
                     <children>
-                  <VBox fx:id="menuLeftVbox" prefHeight="200.0" prefWidth="100.0">
+                  <VBox fx:id="menuLeftVbox" prefWidth="100.0">
                      <children>
-                              <ImageView fx:id="logo" fitHeight="102.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="logo" fitHeight="80.0" fitWidth="80.0" layoutX="10.0" pickOnBounds="true" preserveRatio="true">
                                   <image>
                                       <Image url="@logo.png" />
                                   </image>
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
                               </ImageView>
-                        <Button fx:id="addMealButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" text="Add Meal">
+                        <Button fx:id="addMealButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Add Meal">
                            <VBox.margin>
                               <Insets left="10.0" top="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Button fx:id="addRecipeButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" text="Recipies">
+                        <Button fx:id="addRecipeButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Recipies">
                            <VBox.margin>
                               <Insets left="10.0" top="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Button fx:id="summaryButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" text="Summary">
+                        <Button fx:id="summaryButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Summary">
                            <VBox.margin>
                               <Insets left="10.0" top="10.0" />
                            </VBox.margin>
@@ -44,11 +47,17 @@
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                      <children>
-                              <ToolBar fx:id="ToolBar_Top" prefHeight="35.0" prefWidth="682.0">
+                              <ToolBar fx:id="ToolBar_Top" prefHeight="180.0">
                                   <items>
-                                      <Button fx:id="exportButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Export" />
-                                      <Button fx:id="saveButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Save" />
+                                      <Button fx:id="exportButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" text="Export" />
+                                      <Button fx:id="saveButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" text="Save">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets></Button>
                                   </items>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
                               </ToolBar>
                             <HBox fx:id="HBox_Down" prefHeight="541.0" prefWidth="784.0" VBox.vgrow="ALWAYS">
                                 <children>

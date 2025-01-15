@@ -307,20 +307,21 @@ public class mainPageController {
             }
         }
         Label caloriesLabel = new Label("Calories");
-        Label caloriesValueLabel = new Label("" + calories + "kcal");
+        Label caloriesValueLabel = new Label("" + String.format("%.2f", calories) + "kcal");
         caloriesLabel.setStyle("-fx-font-weight: bold;");
 
         Label proteinLabel = new Label("Proteins");
-        Label proteinValueLabel = new Label("" + proteins + "g");
+        Label proteinValueLabel = new Label("" + String.format("%.2f", proteins) + "g");
         proteinLabel.setStyle("-fx-font-weight: bold;");
 
         Label fatsLabel = new Label("Fat");
-        Label fatsValueLabel = new Label("" + fats + "g");
+        Label fatsValueLabel = new Label("" + String.format("%.2f", fats) + "g");
         fatsLabel.setStyle("-fx-font-weight: bold;");
 
         Label carbsLabel = new Label("Carbs");
-        Label carbsValueLabel = new Label("" + carbs + "g");
+        Label carbsValueLabel = new Label("" + String.format("%.2f", carbs) + "g");
         carbsLabel.setStyle("-fx-font-weight: bold;");
+
 
         caloriesContainer.getChildren().addAll(caloriesLabel, caloriesValueLabel);
         proteinContainer.getChildren().addAll(proteinLabel, proteinValueLabel);
