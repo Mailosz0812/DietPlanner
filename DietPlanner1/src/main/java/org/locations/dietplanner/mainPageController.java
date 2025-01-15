@@ -262,7 +262,7 @@ public class mainPageController {
 
                 Label mealLabel = new Label(formatMealInfo(meal));
                 mealLabel.setWrapText(true);
-                mealLabel.setMaxWidth(500);
+                mealLabel.setMaxWidth(700);
                 Button removeButton = new Button("Remove");
                 removeButton.setOnAction(actionEvent -> removingMealHandler(container, mealType));
 
