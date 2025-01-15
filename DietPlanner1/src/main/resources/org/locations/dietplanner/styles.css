@@ -1,8 +1,6 @@
 .button{
-    -fx-font-family: "Lucida Console";
-    -fx-background-color: #76C1C4;
-    -fx-font-size: 14;
-    -fx-font-weight: bold;
+    -fx-background-color: #f2d457;
+    -fx-font-size: 12;
     -fx-text-fill: black;
     -fx-background-radius: 10;
     -fx-border-radius: 5;
@@ -10,14 +8,24 @@
 }
 
 .button:hover{
-    -fx-font-family: "Lucida Console";
-    -fx-background-color: #56A3A6;
-    -fx-font-size: 14;
-    -fx-font-weight: bold;
+    -fx-background-color: #dfc45b;
+    -fx-font-size: 12;
     -fx-text-fill: black;
     -fx-background-radius: 10;
     -fx-border-radius: 5;
     -fx-padding: 5;
+}
+
+#addMealButton,
+#summaryButton,
+#addRecipeButton{
+    -fx-background-color: #44e38d;
+}
+
+#addMealButton:hover,
+#summaryButton:hover,
+#addRecipeButton:hover{
+    -fx-background-color: #39C378FF;
 }
 
 #logo,
