@@ -316,7 +316,7 @@ public class mainPageController {
         Label proteinValueLabel = new Label("" + String.format("%.2f",proteins)  + " g");
         proteinLabel.setStyle("-fx-font-weight: bold;");
 
-        Label fatsLabel = new Label("Fat");
+        Label fatsLabel = new Label("Fats");
         Label fatsValueLabel = new Label("" + String.format("%.2f",fats)  + " g");
         fatsLabel.setStyle("-fx-font-weight: bold;");
 

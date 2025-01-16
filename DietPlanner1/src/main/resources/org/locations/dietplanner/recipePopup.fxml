@@ -34,12 +34,12 @@
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding></Button>
-        <Label fx:id="errorLabel" disable="true" layoutX="23.0" layoutY="463.0" prefHeight="18.0" prefWidth="149.0" />
+        <Label fx:id="errorLabel" disable="true" layoutX="14.0" layoutY="439.0" prefHeight="18.0" prefWidth="149.0" />
     </AnchorPane>
     <AnchorPane layoutX="270.0" layoutY="22.0" prefHeight="454.0" prefWidth="286.0">
         <Label fx:id="RecipePropertiesLabel" layoutX="56.0" layoutY="-6.0" stylesheets="@styles.css" text="Recipe properties" />
         <TextField fx:id="nameRecipeInput" layoutX="6.0" layoutY="96.0" prefHeight="26.0" prefWidth="274.0" />
-        <Label layoutX="14.0" layoutY="67.0" text="Name" />
+        <Label layoutX="5.0" layoutY="66.0" text="Name" />
         <Label layoutX="5.0" layoutY="133.0" text="Recipe type" />
         <Label layoutX="5.0" layoutY="201.0" text="Your Recipe" />
         <TextArea fx:id="recipeText" layoutX="6.0" layoutY="218.0" prefHeight="122.0" prefWidth="274.0" stylesheets="@styles.css" />
