@@ -20,7 +20,7 @@
             <TextField fx:id="nameInput" prefHeight="26.0" prefWidth="136.0" />
             <Label text="Calories" />
             <TextField fx:id="caloriesInput" />
-            <Label text="Fat" />
+            <Label text="Fats" />
             <TextField fx:id="fatInput" />
             <Label text="Proteins" />
             <TextField fx:id="proteinsInput" />
