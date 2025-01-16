@@ -360,8 +360,13 @@ public class mainPageController {
     private void openPopupRecipeHandler(){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("recipePopup.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 784, 505);
+            Scene scene = new Scene(fxmlLoader.load(), 917, 718);
             Stage stage = new Stage();
+            stage.setMinWidth(917);
+            stage.setMinHeight(718);
+            stage.setMaxWidth(917);
+            stage.setMaxHeight(718);
+            stage.setResizable(false);
             scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Recipe Form");

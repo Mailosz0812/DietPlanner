@@ -92,7 +92,8 @@
     -fx-border-width: 1;
 }
 
-#addIngredientLabel
+#addIngredientLabel,
+#AddIngredientsRecipe
 {
     -fx-font-size: 20;
     -fx-font-weight: bold;
@@ -101,7 +102,8 @@
     -fx-padding: 5;
 }
 
-#mealConfigLabel{
+#mealConfigLabel,
+#RecipePropertiesLabel{
     -fx-font-size: 20;
     -fx-font-weight: bold;
     -fx-background-color: #44E38DFF;
@@ -120,20 +122,24 @@
 }
 
 #clearButton,
-#createButton{
+#createButton,
+#createButtonRecipe{
     -fx-background-color: #44E38DFF;
 }
 
 #clearButton:hover,
-#createButton:hover{
+#createButton:hover,
+#createButtonRecipe:hover{
     -fx-background-color: #39C378FF;
 }
 
-#removeButton{
+#removeButton,
+#removeRecipeButton{
     -fx-background-color: #E74C3CFF;
 }
 
-#removeButton:hover{
+#removeButton:hover,
+#removeRecipeButton:hover{
     -fx-background-color: #C0392BFF;
 }
 
