@@ -91,6 +91,7 @@ public class Recipe implements Serializable {
         string.append(this.name);
         for (Ingredient ingredient : ingredientList) {
             string.append(ingredient.toString());
+            string.append(" ");
         }
         string.append(this.mealType.toString());
         return string.toString();
