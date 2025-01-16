@@ -272,14 +272,14 @@ public class mainPageController {
                         mealLabel.setMaxWidth(600);
 
                         Button removeButton = new Button("Remove");
-                        removeButton.setOnAction(actionEvent -> removingMealHandler(container, mealType));
+                        removeButton.setOnAction(actionEvent -> removingMealHandler(container, mealType, mealTypeLabel));
 
                         vbox.getChildren().addAll(mealLabel, removeButton);
                     });
             container.getChildren().add(vbox);
         }
     }
-    private void removingMealHandler(AnchorPane container,MealType mealType){
+    private void removingMealHandler(AnchorPane container,MealType mealType, Label mealLabel){
         MealService mealServiceByDate = mainMealService.getMealServiceByDate(creationDate);
         List<IMeal> meals = mealServiceByDate.getMealByDate(creationDate);
         for (IMeal meal : meals) {
@@ -288,6 +288,7 @@ public class mainPageController {
             }
         }
         container.getChildren().clear();
+        container.getChildren().add(mealLabel);
         loadMacros(creationDate);
     }
     private String formatMealInfo(IMeal meal) {
@@ -393,8 +394,15 @@ public class mainPageController {
                 controller.setService(mainMealService.getMealServiceByDate(creationDate));
                 return controller;
             });
-            Scene scene = new Scene(fxmlLoader.load(),784,505);
+            float width = 723.2f;
+            float height = 698.4f;
+            Scene scene = new Scene(fxmlLoader.load(),width,height);
             Stage stage = new Stage();
+            stage.setMinWidth(width);
+            stage.setMinHeight(height);
+            stage.setMaxWidth(width);
+            stage.setMaxHeight(height);
+            stage.setResizable(false);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Week Summary");
             scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());

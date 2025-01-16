@@ -34,7 +34,7 @@
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding></Button>
-        <Label fx:id="errorLabel" disable="true" layoutX="23.0" layoutY="463.0" prefHeight="18.0" prefWidth="149.0" />
+        <Label fx:id="errorLabel" disable="true" layoutX="40.0" layoutY="429.0" prefHeight="18.0" prefWidth="149.0" />
     </AnchorPane>
     <AnchorPane layoutX="270.0" layoutY="22.0" prefHeight="454.0" prefWidth="286.0">
         <Label fx:id="RecipePropertiesLabel" layoutX="56.0" stylesheets="@styles.css" text="Recipe properties" />
