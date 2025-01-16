@@ -10,12 +10,18 @@ import org.locations.dietplanner.Implementation.Builder.RecipeBuilder;
 import org.locations.dietplanner.Implementation.Builder.RecipeStorage;
 import org.locations.dietplanner.Implementation.IngredientType;
 import org.locations.dietplanner.Implementation.MealType;
-import org.locations.dietplanner.Implementation.mealBuilder.Meal;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class recipePopupController {
+
+    @FXML
+    private Label AddIngredientsRecipe;
+
+    @FXML
+    private Label RecipePropertiesLabel;
+
     @FXML
     private Button addButton;
 
@@ -32,13 +38,16 @@ public class recipePopupController {
     private Label errorLabel;
 
     @FXML
-    private TextField fatsInput;
+    private TextField fatInput;
 
     @FXML
     private ListView<Ingredient> ingredientList;
 
     @FXML
     private Label mealConfigError;
+
+    @FXML
+    private Label mealViewLabel;
 
     @FXML
     private TextField nameInput;
@@ -56,13 +65,14 @@ public class recipePopupController {
     private ChoiceBox<MealType> recipeTypeInput;
 
     @FXML
-    private ChoiceBox<IngredientType> typeView;
-
-    @FXML
     private ListView<Recipe> recipiesView;
 
     @FXML
     private Button removeRecipeButton;
+
+    @FXML
+    private ChoiceBox<IngredientType> typeView;
+
 
     private RecipeStorage storage;
 
@@ -135,7 +145,7 @@ public class recipePopupController {
     private void ingredientAddHandler(){
         String ingredientName = nameInput.getText();
         String caloriesString = caloriesInput.getText();
-        String fatsString = fatsInput.getText();
+        String fatsString = fatInput.getText();
         String proteinsString = proteinsInput.getText();
         String carbsString = carbsInput.getText();
         IngredientType ingredientType = typeView.getSelectionModel().getSelectedItem();
