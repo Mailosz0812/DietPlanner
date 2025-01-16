@@ -3,8 +3,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.locations.dietplanner.summaryPopupController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.locations.dietplanner.summaryPopupController">
    <children>
-      <Text fx:id="someText" layoutX="145.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="142.93670654296875" />
+      <Text fx:id="someText" layoutX="46.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="235.43670654296875" />
    </children>
 </AnchorPane>

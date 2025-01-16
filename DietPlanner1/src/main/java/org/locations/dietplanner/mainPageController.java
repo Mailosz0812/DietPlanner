@@ -248,28 +248,35 @@ public class mainPageController {
             buttonContainer.getChildren().add(button);
         }
     }
-    private void loadMeals(LocalDate currentDate){
+    private void loadMeals(LocalDate currentDate) {
         mealsContainers.values().forEach(container -> container.getChildren().clear());
+
         MealService mealService = mainMealService.getMealServiceByDate(currentDate);
         List<IMeal> meals = mealService.getMealByDate(currentDate);
-        if(!meals.isEmpty()){
-            for (IMeal meal : meals) {
-                MealType mealType = meal.getRecipe().getMealType();
-                AnchorPane container = mealsContainers.get(mealType);
 
-                VBox vbox = new VBox(10);
-                vbox.setPadding(new Insets(10, 10, 10, 10));
+        for (MealType mealType : MealType.values()) {
+            AnchorPane container = mealsContainers.get(mealType);
 
-                Label mealLabel = new Label(formatMealInfo(meal));
-                mealLabel.setWrapText(true);
-                mealLabel.setMaxWidth(600);
-                Button removeButton = new Button("Remove");
-                removeButton.setOnAction(actionEvent -> removingMealHandler(container, mealType));
+            VBox vbox = new VBox(10);
+            vbox.setPadding(new Insets(10, 10, 10, 10));
 
-                vbox.getChildren().addAll(mealLabel, removeButton);
-                container.getChildren().add(vbox);
-            }
+            Label mealTypeLabel = new Label(mealType.name());
+            mealTypeLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333;");
+            vbox.getChildren().add(mealTypeLabel);
 
+            meals.stream()
+                    .filter(meal -> meal.getRecipe().getMealType() == mealType)
+                    .forEach(meal -> {
+                        Label mealLabel = new Label(formatMealInfo(meal));
+                        mealLabel.setWrapText(true);
+                        mealLabel.setMaxWidth(600);
+
+                        Button removeButton = new Button("Remove");
+                        removeButton.setOnAction(actionEvent -> removingMealHandler(container, mealType));
+
+                        vbox.getChildren().addAll(mealLabel, removeButton);
+                    });
+            container.getChildren().add(vbox);
         }
     }
     private void removingMealHandler(AnchorPane container,MealType mealType){
