@@ -29,7 +29,7 @@ The application follows software design principles and incorporates the followin
 - Java Runtime Environment (JRE 11 or later) must be installed
 
 ### Steps
-1. Download the `.exe` file from the release section.
+1. Download the `.exe` file.
 2. Ensure **Java Runtime Environment (JRE)** is installed on your system.
 3. Run the application by double-clicking `DietPlanner.exe`.
 4. If any issues occur, check if required dependencies are installed or try running the `.exe` via the command prompt.
