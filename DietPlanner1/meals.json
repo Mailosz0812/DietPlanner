@@ -111,66 +111,6 @@
         },
         {
           "@type": "Meal",
-          "day": "2025-01-14",
-          "recipe": {
-            "@type": "Recipe",
-            "ingredientList": [
-              {
-                "@type": "Ingredient",
-                "calories": 200.0,
-                "carb": 41.0,
-                "fat": 1.2,
-                "name": "Pasta",
-                "protein": 7.0,
-                "type": "GRAIN"
-              },
-              {
-                "@type": "Ingredient",
-                "calories": 50.0,
-                "carb": 10.0,
-                "fat": 0.4,
-                "name": "Tomato Sauce",
-                "protein": 2.0,
-                "type": "VEGETABLES"
-              },
-              {
-                "@type": "Ingredient",
-                "calories": 22.0,
-                "carb": 0.2,
-                "fat": 1.5,
-                "name": "Parmesan Cheese",
-                "protein": 2.0,
-                "type": "DAIRY"
-              }
-            ],
-            "mealType": "dinner",
-            "name": "Pasta with Tomato Sauce",
-            "recipeText": "Boil the pasta, mix with tomato sauce, and top with grated parmesan."
-          }
-        },
-        {
-          "@type": "Meal",
-          "day": "2025-01-15",
-          "recipe": {
-            "@type": "Recipe",
-            "ingredientList": [
-              {
-                "@type": "Ingredient",
-                "calories": 1.0,
-                "carb": 1.0,
-                "fat": 1.0,
-                "name": "1",
-                "protein": 1.0,
-                "type": "MEAT"
-              }
-            ],
-            "mealType": "lunch",
-            "name": "1",
-            "recipeText": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-          }
-        },
-        {
-          "@type": "Meal",
           "day": "2025-01-15",
           "recipe": {
             "@type": "Recipe",
@@ -298,10 +238,57 @@
             "name": "Garlic Chicken",
             "recipeText": "Season the chicken, fry it in olive oil with garlic, and serve hot."
           }
+        },
+        {
+          "@type": "Meal",
+          "day": "2025-01-24",
+          "recipe": {
+            "@type": "Recipe",
+            "ingredientList": [
+              {
+                "@type": "Ingredient",
+                "calories": 350.0,
+                "carb": 80.0,
+                "fat": 30.0,
+                "name": "Jajówa",
+                "protein": 40.0,
+                "type": "DAIRY"
+              },
+              {
+                "@type": "Ingredient",
+                "calories": 280.0,
+                "carb": 150.0,
+                "fat": 15.0,
+                "name": "Kanapki",
+                "protein": 20.0,
+                "type": "OTHER"
+              }
+            ],
+            "mealType": "breakfast",
+            "name": "sniadanie jajówa",
+            "recipeText": "Jajka na patelnie, posmarowac chleb maslem i elo"
+          }
+        },
+        {
+          "@type": "Meal",
+          "day": "2025-01-21",
+          "recipe": {
+            "@type": "Recipe",
+            "ingredientList": [],
+            "mealType": "dessert",
+            "name": "Cinnamon Apple Snack",
+            "recipeText": "Slice the apple, sprinkle with cinnamon, and drizzle with honey."
+          }
         }
       ],
       "endDate": "2025-01-26",
       "startDate": "2025-01-20"
+    },
+    {
+      "@type": "MealService",
+      "MealsGroup": [],
+      "endDate": "2025-02-02",
+      "startDate": "2025-01-27"
     }
   ],
   "endDate": null,
