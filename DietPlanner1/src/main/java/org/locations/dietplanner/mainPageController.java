@@ -189,7 +189,6 @@ public class mainPageController {
         });
         exportButton.setOnAction(actionEvent -> {
             StringBuilder builder = new StringBuilder();
-            builder.append("/C:\\Users\\Czarny\\Desktop\\");
             builder.append("MealsExport");
             builder.append(currentDate[0]);
             builder.append(".json");
